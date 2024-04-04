@@ -21,27 +21,27 @@ public class DogController {
     private DogRepository dogRepo;
     private CategoryRepository categoryRepo;
 
-    @GetMapping("/clotheslist")
+    @GetMapping("/clothesList")
     public String GetDog(Model model) {
         model.addAttribute("", dogRepo.findAll());
         return "clothesList";
     }
 
-    @GetMapping("/addclothing")
+    @GetMapping("/addClothes")
     public String AddNewClothing(Model model) {
         model.addAttribute("clothing", new Dog());
-        model.addAttribute("categories", categoryRepo.findAll());
+        //model.addAttribute("categories", categoryRepo.findAll());
         return "addClothes";
     }
 
-    @PostMapping("/saveclothing")
+    @PostMapping("/saveClothing")
     public String SaveClothing(@ModelAttribute Dog dog) {
         // TODO: process POST request
         dogRepo.save(dog);
         return "redirect:/clothesList";
     }
 
-    @GetMapping("/deleteclothing/{id}")
+    @GetMapping("/deleteClothing/{id}")
     public String DeleteClothing(@PathVariable("id") Long dogId) {
         dogRepo.deleteById(dogId);
         return "redirect:/clothesList";
