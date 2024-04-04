@@ -15,7 +15,7 @@ import k24.tiimi3.dogbackend.domain.DogRepository;
 @SpringBootApplication
 public class DogbackendApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(DogbackendApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(DogbackendApplication.class, args);

@@ -23,7 +23,7 @@ public class DogController {
 
     @GetMapping("/clothesList")
     public String GetDog(Model model) {
-        model.addAttribute("", dogRepo.findAll());
+        model.addAttribute("dogs", dogRepo.findAll());
         return "clothesList";
     }
 
