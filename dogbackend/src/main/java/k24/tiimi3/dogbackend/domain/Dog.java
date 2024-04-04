@@ -24,7 +24,11 @@ public class Dog {
     @JoinColumn(name = "categoryId")
     private Category category;
 
-    public Dog(String title, String author, int publicationYear, String isbn, double price,
+
+    public Dog(){
+    }
+
+    public Dog(String title, String type, String color, String size, double price, String manufacturer,
             Category category) {
         this.title = title;
         this.type = type;
@@ -32,9 +36,7 @@ public class Dog {
         this.size = size;
         this.price = price;
         this.manufacturer = manufacturer;
-    }
-
-    public Dog() {
+        this.category = category;
     }
 
     public Long getId() {
@@ -61,7 +63,7 @@ public class Dog {
         this.type = type;
     }
 
-    public void getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -73,8 +75,8 @@ public class Dog {
         return size;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public double getPrice() {
@@ -83,6 +85,14 @@ public class Dog {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public Category getCategory() {
@@ -95,15 +105,8 @@ public class Dog {
 
     @Override
     public String toString() {
-        if (this.category != null) {
-            return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-                    + ", isbn=" + isbn
-                    + ", price=" + price + ", category=" + this.getCategory() + "]";
-        } else {
-            return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-                    + ", isbn=" + isbn
-                    + ", price=" + price + "]";
-        }
+        return "Dog [id=" + id + ", title=" + title + ", type=" + type + ", color=" + color + ", size=" + size
+                + ", price=" + price + ", manufacturer=" + manufacturer + ", category=" + category + "]";
     }
 
 }
