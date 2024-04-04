@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Type</th>
+                    <th>Category</th>
                     <th>Color</th>
                     <th>Size</th>
                     <th>Price</th>
@@ -23,7 +23,7 @@
             <tbody>
                 <tr th:each="dog : ${dogs}">
                     <td th:text="${dog.title}">Clothes title</td>
-                    <td th:text="${dog.type}">Type</td>
+                    <td th:text="${dog.category.name}">Category</td>
                     <td th:text="${dog.color}">Color</td>
                     <td th:text="${dog.size}">Size</td>
                     <td th:text="${dog.price}">Price</td>
