@@ -14,7 +14,6 @@ public class Dog {
     private Long id;
 
     private String title;
-    private String type;
     private String color;
     private String size;
     private double price;
@@ -28,10 +27,9 @@ public class Dog {
     public Dog(){
     }
 
-    public Dog(String title, String type, String color, String size, double price, String manufacturer,
+    public Dog(String title, String color, String size, double price, String manufacturer,
             Category category) {
         this.title = title;
-        this.type = type;
         this.color = color;
         this.size = size;
         this.price = price;
@@ -53,14 +51,6 @@ public class Dog {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getColor() {
@@ -105,7 +95,7 @@ public class Dog {
 
     @Override
     public String toString() {
-        return "Dog [id=" + id + ", title=" + title + ", type=" + type + ", color=" + color + ", size=" + size
+        return "Dog [id=" + id + ", title=" + title + ", color=" + color + ", size=" + size
                 + ", price=" + price + ", manufacturer=" + manufacturer + ", category=" + category + "]";
     }
 
