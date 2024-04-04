@@ -11,15 +11,14 @@ import k24.tiimi3.dogbackend.domain.Dog;
 import k24.tiimi3.dogbackend.domain.DogRepository;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class DogController {
     @Autowired
     private DogRepository dogRepo;
-    private CategoryRepository categoryRepo;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/clothesList")
     public String GetDog(Model model) {
@@ -30,7 +29,7 @@ public class DogController {
     @GetMapping("/addClothes")
     public String AddNewClothing(Model model) {
         model.addAttribute("clothing", new Dog());
-        //model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addClothes";
     }
 
