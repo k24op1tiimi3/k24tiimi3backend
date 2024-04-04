@@ -19,16 +19,20 @@
                 <input type="text" class="form-control" id="type" name="type" th:value="${dog.type}" required="required">
             </div>
             <div class="form-group">
-                <label for="publicationYear">Publication Year</label>
-                <input type="number" class="form-control" id="publicationYear" name="publicationYear" th:value="${book.publicationYear}" required="required">
+                <label for="color">Color</label>
+                <input type="text" class="form-control" id="color" name="color" th:value="${dog.color}" required="required">
             </div>
             <div class="form-group">
-                <label for="isbn">ISBN</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" th:value="${book.isbn}" required="required">
+                <label for="size">Size</label>
+                <input type="text" class="form-control" id="size" name="size" th:value="${dog.size}" required="required">
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" th:value="${book.price}" required="required">
+                <input type="number" class="form-control" id="price" name="price" th:value="${dog.price}" required="required">
+            </div>
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" class="form-control" id="manufacturer" name="manufacturer" th:value="${dog.manufacturer}" required="required">
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
@@ -39,7 +43,7 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
         
-        <a class="btn btn-secondary mt-3" th:href="@{/booklist}">Back to Book List</a>
+        <a class="btn btn-secondary mt-3" th:href="@{/clothesList}">Back to Clothes List</a>
     </div>
 </body>
 </html>
