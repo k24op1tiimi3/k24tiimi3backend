@@ -14,10 +14,11 @@ public class Dog {
     private Long id;
 
     private String title;
-    private String author;
-    private int publicationYear;
-    private String isbn;
+    private String type;
+    private String color;
+    private String size;
     private double price;
+    private String manufacturer;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
@@ -26,11 +27,11 @@ public class Dog {
     public Dog(String title, String author, int publicationYear, String isbn, double price,
             Category category) {
         this.title = title;
-        this.author = author;
-        this.publicationYear = publicationYear;
-        this.isbn = isbn;
+        this.type = type;
+        this.color = color;
+        this.size = size;
         this.price = price;
-        this.category = category;
+        this.manufacturer = manufacturer;
     }
 
     public Dog() {
@@ -52,24 +53,24 @@ public class Dog {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getType() {
+        return type;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public void getColor() {
+        return color;
     }
 
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public String getSize() {
+        return size;
     }
 
     public void setIsbn(String isbn) {
