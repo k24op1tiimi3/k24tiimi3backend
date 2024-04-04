@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 @Controller
 public class DogController {
     @Autowired
@@ -29,25 +27,24 @@ public class DogController {
         return "clothesList";
     }
 
-    @GetMapping("addclothing")
-    public String AddNewClothing (Model model) {
+    @GetMapping("/addclothing")
+    public String AddNewClothing(Model model) {
         model.addAttribute("clothing", new Dog());
         model.addAttribute("categories", categoryRepo.findAll());
         return "addClothes";
     }
-    
-    @PostMapping("saveclothing")
+
+    @PostMapping("/saveclothing")
     public String SaveClothing(@ModelAttribute Dog dog) {
-        //TODO: process POST request
+        // TODO: process POST request
         dogRepo.save(dog);
         return "redirect:/clothesList";
     }
 
-    @GetMapping("deleteclothing/{id}")
+    @GetMapping("/deleteclothing/{id}")
     public String DeleteClothing(@PathVariable("id") Long dogId) {
         dogRepo.deleteById(dogId);
         return "redirect:/clothesList";
     }
-    
-    
+
 }
