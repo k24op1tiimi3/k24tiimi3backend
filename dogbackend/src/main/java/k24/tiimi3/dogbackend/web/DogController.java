@@ -12,7 +12,6 @@ import k24.tiimi3.dogbackend.domain.DogRepository;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -48,11 +47,11 @@ public class DogController {
         return "redirect:/clothesList";
     }
 
-    @GetMapping("editClothes/{id}")
+    @GetMapping("/editClothes/{id}")
     public String getMethodName(@PathVariable ("id") Long dogId, Model model) {
         Dog dog = dogRepo.findById(dogId).get();
         model.addAttribute("dog", dog);
-        model.addAttribute("categories", categoryRepo);
+        model.addAttribute("categories", categoryRepo.findAll());
         return "editClothes";
     }
     
