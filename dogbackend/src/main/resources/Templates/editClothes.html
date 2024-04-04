@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="category">Category</label>
                 <select class="form-control" id="category" name="category.id">
-                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == book.category.id}">Category Name</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == dog.category.id}">Category Name</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
