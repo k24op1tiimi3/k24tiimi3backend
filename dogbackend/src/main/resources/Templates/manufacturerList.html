@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Clothing Manufacturer List</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+        th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Dog Clothing Manufacturer List</h1>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Manufacturer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dog : ${dogs}">
+                    <td th:text="${dog.manufacturer}">Manufacturer</td>
+                    <td>
+                        <form th:action="@{'/deleteClothing/' + ${dog.id}}">
+                            <button class="btn btn-danger" type="submit"
+                                onclick="return confirm('Are you sure you want to delete this manufacturer?');"
+                                >Delete</button>
+                        </form>
+                        <a class="btn btn-primary" th:href="@{'/editClothes/' + ${dog.id}}"
+                            >Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-success" th:href="@{/addClothes}"
+            >Add Manufacturer</a>
+    </div>
+</body>
+</html>
