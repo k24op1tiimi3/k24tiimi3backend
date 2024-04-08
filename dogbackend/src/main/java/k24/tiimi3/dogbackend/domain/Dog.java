@@ -17,17 +17,19 @@ public class Dog {
     private String color;
     private String size;
     private double price;
-    private String manufacturer;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "manufacturerId")
+    private Manufacturer manufacturer;
 
-    public Dog(){
+    public Dog() {
     }
 
-    public Dog(String title, String color, String size, double price, String manufacturer,
+    public Dog(String title, String color, String size, double price, Manufacturer manufacturer,
             Category category) {
         this.title = title;
         this.color = color;
@@ -77,11 +79,11 @@ public class Dog {
         this.price = price;
     }
 
-    public String getManufacturer() {
+    public Manufacturer getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
 
