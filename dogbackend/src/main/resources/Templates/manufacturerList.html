@@ -31,8 +31,13 @@
             </tbody>
         </table>
 
-        <a class="btn btn-success" th:href="@{/addClothes}"
-            >Add Manufacturer</a>
+        <form th:action="@{/addManufacturer}" method="post">
+            <div class="form-group">
+                <label for="manufacturerName">Manufacturer Name:</label>
+                <input type="text" class="form-control" id="manufacturerName" name="manufacturerName">
+            </div>
+            <button type="submit" class="btn btn-success">Add Manufacturer</button>
+        </form>
     </div>
 </body>
 </html>
