@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 <tr th:each="dog : ${dogs}">
-                    <td th:text="${dog.manufacturer}">Manufacturer</td>
+                    <td th:text="${dog.manufacturer.name}">Manufacturer</td>
                     <td>
                         <form th:action="@{'/deleteClothing/' + ${dog.id}}">
                             <button class="btn btn-danger" type="submit"
@@ -40,7 +40,7 @@
         </form>
 
         <a class="btn btn-secondary mt-3" th:href="@{/clothesList}">Back to Clothes List</a>
-        
+
     </div>
 </body>
 </html>

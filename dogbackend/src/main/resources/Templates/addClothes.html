@@ -28,7 +28,9 @@
             </div>
             <div class="form-group">
                 <label for="manufacturer">Manufacturer</label>
-                <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Enter Manufacturer" required="required">
+                <select class="form-control" id="manufacturer" name="manufacturer">
+                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.manufacturerId}" th:text="${manufacturer.name}">Manufacturer Name</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="category">Category</label>

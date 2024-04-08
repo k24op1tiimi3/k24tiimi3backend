@@ -27,7 +27,7 @@
                     <td th:text="${dog.color}">Color</td>
                     <td th:text="${dog.size}">Size</td>
                     <td th:text="${dog.price}">Price</td>
-                    <td th:text="${dog.manufacturer}">Manufacturer</td>
+                    <td th:text="${dog.manufacturer.name}">Manufacturer</td>
                     <td>
                         <form th:action="@{'/deleteClothing/' + ${dog.id}}">
                             <button class="btn btn-danger" type="submit"
