@@ -13,7 +13,6 @@ import k24.tiimi3.dogbackend.domain.DogRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 @Controller
 public class DogController {
     @Autowired
@@ -25,6 +24,12 @@ public class DogController {
     public String GetDog(Model model) {
         model.addAttribute("dogs", dogRepo.findAll());
         return "clothesList";
+    }
+
+    @GetMapping("/manufacturerList")
+    public String GetManufacturers(Model model) {
+        model.addAttribute("dogs", dogRepo.findAll());
+        return "manufacturerList";
     }
 
     @GetMapping("/addClothes")
@@ -48,11 +53,11 @@ public class DogController {
     }
 
     @GetMapping("/editClothes/{id}")
-    public String getMethodName(@PathVariable ("id") Long dogId, Model model) {
+    public String getMethodName(@PathVariable("id") Long dogId, Model model) {
         Dog dog = dogRepo.findById(dogId).get();
         model.addAttribute("dog", dog);
         model.addAttribute("categories", categoryRepo.findAll());
         return "editClothes";
     }
-    
+
 }
