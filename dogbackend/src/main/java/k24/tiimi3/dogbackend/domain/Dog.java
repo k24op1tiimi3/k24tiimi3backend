@@ -32,7 +32,7 @@ public class Dog {
     }
 
     public Dog(String title, String color, String size, double price, Manufacturer manufacturer,
-            Category category) {
+               Category category) {
         this.title = title;
         this.color = color;
         this.size = size;
@@ -99,6 +99,10 @@ public class Dog {
 
     @Override
     public String toString() {
+        // ToDo: Fix decimal numbers
+        // At the moment if you add an item with i.e. the price set as 60.00, it shows up as 60.0 when added
+        // Possible fix below, can't test right now because the manufacturer in /addClothes is broken
+
         DecimalFormat df = new DecimalFormat("0.00");
         String formattedPrice = df.format(price);
 
@@ -107,3 +111,4 @@ public class Dog {
     }
 
 }
+

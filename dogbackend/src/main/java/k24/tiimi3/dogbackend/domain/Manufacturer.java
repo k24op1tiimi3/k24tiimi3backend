@@ -1,4 +1,3 @@
-
 package k24.tiimi3.dogbackend.domain;
 
 import java.util.List;
