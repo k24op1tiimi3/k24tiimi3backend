@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.text.DecimalFormat;
+
 @Entity
 public class Dog {
     @Id
@@ -97,8 +99,11 @@ public class Dog {
 
     @Override
     public String toString() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        String formattedPrice = df.format(price);
+
         return "Dog [id=" + id + ", title=" + title + ", color=" + color + ", size=" + size
-                + ", price=" + price + ", manufacturer=" + manufacturer + ", category=" + category + "]";
+                + ", price=" + formattedPrice + ", manufacturer=" + manufacturer + ", category=" + category + "]";
     }
 
 }
