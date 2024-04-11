@@ -42,6 +42,14 @@ public class Category {
         this.name = name;
     }
 
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
+
     @Override
     public String toString(){
         return "[categoryId=" + categoryId + ",name=" + name + "]";

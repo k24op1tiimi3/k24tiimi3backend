@@ -1,5 +1,6 @@
 package k24.tiimi3.dogbackend.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,13 @@ import k24.tiimi3.dogbackend.domain.CategoryRepository;
 
 @Controller
 public class CategoryController {
-    private final CategoryRepository categoryRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-    public CategoryController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    @GetMapping("/categoryList")
+    public String GetCategories(Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "categoryList";
     }
 
     @GetMapping("/addcategory")
@@ -35,13 +39,6 @@ public class CategoryController {
         categoryRepository.deleteById(categoryId);
         return "redirect:/categorylist";
     }    
-
-    @GetMapping("/categorylist")
-    public String showCategoryList(Model model) {
-        Iterable<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories", categories);
-        return "categorylist";
-    }
 
     @GetMapping("/editcategory/{categoryId}")
     public String showEditCategoryForm(@PathVariable Long categoryId, Model model) {

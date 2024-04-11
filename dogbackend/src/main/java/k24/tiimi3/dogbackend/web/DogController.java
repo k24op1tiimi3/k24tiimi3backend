@@ -42,12 +42,6 @@ public class DogController {
         return "manufacturerList";
     }
 
-    @GetMapping("/categoryList")
-    public String GetCategories(Model model) {
-        model.addAttribute("dogs", dogRepo.findAll());
-        return "categoryList";
-    }
-
     @GetMapping("/addClothes")
     public String AddNewClothing(Model model) {
         model.addAttribute("clothing", new Dog());
