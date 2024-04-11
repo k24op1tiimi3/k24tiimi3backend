@@ -16,15 +16,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="dog : ${dogs}">
-                    <td th:text="${dog.manufacturer.name}">Manufacturer</td>
+                <tr th:each="manufacturer : ${manufacturers}">
+                    <td th:text="${manufacturer.name}">Manufacturer</td>
+
                     <td>
-                        <form th:action="@{'/deleteClothing/' + ${dog.id}}">
+                        <form th:action="@{'/deletemanufacturer/' + ${manufacturer.manufacturerId}}">
                             <button class="btn btn-danger" type="submit"
                                 onclick="return confirm('Are you sure you want to delete this manufacturer?');"
                                 >Delete</button>
                         </form>
-                        <a class="btn btn-primary" th:href="@{'/editClothes/' + ${dog.id}}"
+                        <a class="btn btn-primary" th:href="@{'/editmanufacturer/' + ${manufacturer.manufacturerId}}"
                             >Edit</a>
                     </td>
                 </tr>

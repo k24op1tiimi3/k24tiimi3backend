@@ -13,6 +13,8 @@ import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -31,17 +33,11 @@ public class DogController {
     }
 
     @GetMapping("/clothesList")
-    public String GetDog(Model model) {
+    public String getClothes(Model model) {
         model.addAttribute("dogs", dogRepo.findAll());
         return "clothesList";
     }
-
-    @GetMapping("/manufacturerList")
-    public String GetManufacturers(Model model) {
-        model.addAttribute("dogs", dogRepo.findAll());
-        return "manufacturerList";
-    }
-
+    
     @GetMapping("/addClothes")
     public String AddNewClothing(Model model) {
         model.addAttribute("clothing", new Dog());

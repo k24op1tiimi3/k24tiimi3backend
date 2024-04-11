@@ -46,10 +46,4 @@ public class CategoryController {
         model.addAttribute("category", category);
         return "editcategory";
     }
-
-    @PostMapping("/updatecategory")
-    public String updateCategory(@ModelAttribute Category category) {
-        categoryRepository.save(category);
-        return "redirect:/categorylist";
-    }
 }

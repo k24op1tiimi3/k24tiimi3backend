@@ -1,6 +1,7 @@
 
 package k24.tiimi3.dogbackend.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,16 +11,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 
 public class ManufacturerController {
-    private final ManufacturerRepository manufacturerRepository;
+    @Autowired
+    private ManufacturerRepository manufacturerRepository;
 
-    public ManufacturerController(ManufacturerRepository manufacturerRepository) {
-        this.manufacturerRepository = manufacturerRepository;
+
+
+    // Shows all manufacturers
+    @GetMapping("/manufacturerList")
+    public String getManufacturers(Model model) {
+        model.addAttribute("manufacturers", manufacturerRepository.findAll());
+        return "manufacturerList";
     }
-
+    
     @GetMapping("/addmanufacturer")
     public String showAddManufacturerForm(Model model) {
         model.addAttribute("manufacturer", new Manufacturer());
@@ -38,23 +47,10 @@ public class ManufacturerController {
         return "redirect:/manufacturerlist";
     }    
 
-    @GetMapping("/manufacturerlist")
-    public String showManufacturerList(Model model) {
-        Iterable<Manufacturer> manufacturers = manufacturerRepository.findAll();
-        model.addAttribute("manufacturers", manufacturers);
-        return "manufacturerlist";
-    }
-
     @GetMapping("/editmanufacturers/{manufacturerId}")
     public String showEditManufacturerForm(@PathVariable Long manufacturerId, Model model) {
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId).orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + manufacturerId));
         model.addAttribute("manufacturer", manufacturer);
         return "editmanufacturer";
-    }
-
-    @PostMapping("/updatemanufacturer")
-    public String updateManufacturer(@ModelAttribute Manufacturer manufacturer) {
-        manufacturerRepository.save(manufacturer);
-        return "redirect:/manufacturerlist";
     }
 }
