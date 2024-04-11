@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Manufacturer {
@@ -17,6 +18,7 @@ public class Manufacturer {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
+    @JsonIgnore
     private List<Dog> dogs;
 
     public Manufacturer() {
