@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import k24.tiimi3.dogbackend.domain.CategoryRepository;
 import k24.tiimi3.dogbackend.domain.Dog;
 import k24.tiimi3.dogbackend.domain.DogRepository;
+import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class DogController {
@@ -19,6 +21,8 @@ public class DogController {
     private DogRepository dogRepo;
     @Autowired
     private CategoryRepository categoryRepo;
+    @Autowired
+    private ManufacturerRepository manufacterRepo;
 
     @GetMapping("/index")
     public String GetIndex(Model model) {
@@ -48,6 +52,7 @@ public class DogController {
     public String AddNewClothing(Model model) {
         model.addAttribute("clothing", new Dog());
         model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("manufacturers", manufacterRepo.findAll());
         return "addClothes";
     }
 

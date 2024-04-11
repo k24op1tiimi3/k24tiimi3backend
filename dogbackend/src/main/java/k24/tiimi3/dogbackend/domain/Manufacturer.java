@@ -41,6 +41,14 @@ public class Manufacturer {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
 
     @Override
     public String toString(){
