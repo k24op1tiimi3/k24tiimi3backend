@@ -20,6 +20,12 @@ public class DogController {
     @Autowired
     private CategoryRepository categoryRepo;
 
+    @GetMapping("/index")
+    public String GetIndex(Model model) {
+        model.addAttribute("dogs", dogRepo.findAll());
+        return "index";
+    }
+
     @GetMapping("/clothesList")
     public String GetDog(Model model) {
         model.addAttribute("dogs", dogRepo.findAll());
