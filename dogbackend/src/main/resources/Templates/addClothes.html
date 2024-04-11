@@ -3,46 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Clothing</title>
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-    <div class="container">
-        <h1 class="mt-5">Add Clothing</h1>
-        
-        <form th:action="@{/saveClothing}" method="post" class="mt-4">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required="required">
-            </div>
-            <div class="form-group">
-                <label for="color">Color</label>
-                <input type="text" class="form-control" id="color" name="color" placeholder="Enter color" required="required">
-            </div>
-            <div class="form-group">
-                <label for="size">Size</label>
-                <input type="text" class="form-control" id="size" name="size" placeholder="Enter Size" required="required">
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" required="required">
-            </div>
-            <div class="form-group">
-                <label for="manufacturer">Manufacturer</label>
-                <select class="form-control" id="manufacturer" name="manufacturer">
-                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.manufacturerId}" th:text="${manufacturer.name}">Manufacturer Name</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select class="form-control" id="category" name="category">
-                    <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.name}">Category Name</option>
-                </select>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        
-        <a class="btn btn-secondary mt-3" th:href="@{/clothesList}">Back to Clothes List</a>
-    </div>
+<div class="container">
+    <h1 class="mt-5">Add Clothing</h1>
+
+    <form th:action="@{/saveClothing}" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="color">Color</label>
+            <input type="text" class="form-control" id="color" name="color" placeholder="Enter color"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="size">Size</label>
+            <input type="text" class="form-control" id="size" name="size" placeholder="Enter Size" required="required">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Enter price"
+                   required="required">
+        </div>
+        <!--
+        <script>
+            document.getElementById("price").addEventListener("input", function (event) {
+                let input = event.target.value;
+
+                let pattern = /^[0-9.]*$/;
+
+                if (!pattern.test(input)) {
+                    document.getElementById("priceError").textContent = "Please enter a valid number (0-9 and .)";
+                    event.target.setCustomValidity("Invalid input");
+                } else {
+                    document.getElementById("priceError").textContent = "";
+                    event.target.setCustomValidity("");
+                }
+            });
+        </script>
+        -->
+        <div class="form-group">
+            <label for="manufacturer">Manufacturer</label>
+            <select class="form-control" id="manufacturer" name="manufacturer">
+                <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.manufacturerId}"
+                        th:text="${manufacturer.name}">Manufacturer Name
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category">
+                <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.name}">
+                    Category Name
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a class="btn btn-secondary mt-3" th:href="@{/clothesList}">Back to Clothes List</a>
+</div>
 </body>
 </html>
