@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Clothing Store</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+        th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Dog Clothing Store</h1>
+
+        <a class="btn btn-success" th:href="@{/clothesList}"
+        >Clothing List</a>
+
+        <a class="btn btn-success" th:href="@{/manufacturerList}"
+        >Manufacturer List</a>
+
+        <a class="btn btn-success" th:href="@{/categoryList}"
+        >Category List</a>
+
+    </div>
+</body>
+</html>
