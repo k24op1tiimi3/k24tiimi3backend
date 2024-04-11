@@ -30,7 +30,7 @@ public class Manufacturer {
         return manufacturerId;
     }
 
-    public void setCategoryId(Long manufacturerId) {
+    public void setManufacturerId(Long manufacturerId) {
         this.manufacturerId = manufacturerId;
     }
 
