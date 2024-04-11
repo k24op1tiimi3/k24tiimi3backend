@@ -13,7 +13,6 @@ import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 

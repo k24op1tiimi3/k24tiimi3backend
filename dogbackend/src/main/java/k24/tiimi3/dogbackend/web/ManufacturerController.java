@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -26,6 +25,7 @@ public class ManufacturerController {
     @GetMapping("/manufacturerList")
     public String getManufacturers(Model model) {
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
+        model.addAttribute("manufacturer", new Manufacturer());
         return "manufacturerList";
     }
     
