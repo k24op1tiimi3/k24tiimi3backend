@@ -31,19 +31,21 @@ public class CategoryController {
     @PostMapping("/savecategory")
     public String saveCategory(@ModelAttribute Category category) {
         categoryRepository.save(category);
-        return "redirect:/categorylist";
+        return "redirect:/categoryList";
     }
 
     @PostMapping("/deletecategory/{categoryId}")
     public String deleteCategory(@PathVariable Long categoryId) {
         categoryRepository.deleteById(categoryId);
-        return "redirect:/categorylist";
-    }    
+        return "redirect:/categoryList";
+    }
 
     @GetMapping("/editcategory/{categoryId}")
     public String showEditCategoryForm(@PathVariable Long categoryId, Model model) {
-        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + categoryId));
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + categoryId));
         model.addAttribute("category", category);
         return "editcategory";
     }
+
 }
