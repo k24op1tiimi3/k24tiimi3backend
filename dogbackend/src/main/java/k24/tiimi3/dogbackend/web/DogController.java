@@ -63,6 +63,7 @@ public class DogController {
         Dog dog = dogRepo.findById(dogId).get();
         model.addAttribute("dog", dog);
         model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("manufacturers", manufacterRepo.findAll());
         return "editClothes";
     }
 

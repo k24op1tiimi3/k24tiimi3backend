@@ -31,7 +31,7 @@
                 <label for="manufacturer">Manufacturer</label>
                 <select class="form-control" id="manufacturer" th:field="*{manufacturer}">
                     <option th:each="manufacturer : ${manufacturers}" 
-                    th:value="${manufacturer.manufacturer}" 
+                    th:value="${manufacturer.manufacturerId}" 
                     th:text="${manufacturer.name}">
                     Manufacturer Name
                 </option>
