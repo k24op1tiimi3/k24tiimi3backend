@@ -14,7 +14,6 @@ public class ManufacturerController {
     @Autowired
     private ManufacturerRepository manufacturerRepository;
 
-    // Shows all manufacturers
     @GetMapping("/manufacturerList")
     public String getManufacturers(Model model) {
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
@@ -40,11 +39,17 @@ public class ManufacturerController {
         return "redirect:/manufacturerList";
     }
 
-    @GetMapping("/editmanufacturers/{manufacturerId}")
+    @GetMapping("/editmanufacturer/{manufacturerId}")
     public String showEditManufacturerForm(@PathVariable Long manufacturerId, Model model) {
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + manufacturerId));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer Id:" + manufacturerId));
         model.addAttribute("manufacturer", manufacturer);
         return "editmanufacturer";
+    }
+
+    @PostMapping("/updatemanufacturer")
+    public String updateManufacturer(@ModelAttribute Manufacturer manufacturer) {
+        manufacturerRepository.save(manufacturer);
+        return "redirect:/manufacturerList";
     }
 }

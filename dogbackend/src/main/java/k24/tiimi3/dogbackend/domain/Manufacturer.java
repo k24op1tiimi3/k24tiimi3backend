@@ -43,7 +43,7 @@ public class Manufacturer {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public List<Dog> getDogs() {
         return dogs;
     }
@@ -53,7 +53,7 @@ public class Manufacturer {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[manufacturerId=" + manufacturerId + ",name=" + name + "]";
     }
 }
