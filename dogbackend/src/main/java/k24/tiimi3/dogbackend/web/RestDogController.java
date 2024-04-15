@@ -27,4 +27,5 @@ public class RestDogController {
     public Iterable<Category> GetCategories() {
         return categoryRepo.findAll();
     }
+
 }
