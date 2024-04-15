@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface DogRepository extends CrudRepository<Dog, Long> {
     List<Dog> findByTitle(String title);
+    List<Dog> findByCategory(Category category);
 }

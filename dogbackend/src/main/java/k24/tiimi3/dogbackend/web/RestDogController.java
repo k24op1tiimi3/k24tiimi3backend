@@ -23,9 +23,9 @@ public class RestDogController {
         return dogRepo.findAll();
     }
 
-    @GetMapping("/categories")
-    public Iterable<Category> GetCategories() {
-        return categoryRepo.findAll();
-    }
+    @GetMapping("/clothes/jackets")
+    public Iterable<Dog> GetJackets() {
+        Category category = categoryRepo.findByName("Jackets").get(0);
+        return dogRepo.findByCategory(category);}
 
 }
