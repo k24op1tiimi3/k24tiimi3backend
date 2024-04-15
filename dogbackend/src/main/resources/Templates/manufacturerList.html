@@ -32,10 +32,10 @@
             </tbody>
         </table>
 
-        <form th:action="@{/savemanufacturer}" method="post">
+        <form th:action="@{/savemanufacturer}" method="post" class="mt-4">
             <div class="form-group">
-                <label for="manufacturerName">Manufacturer Name:</label>
-                <input type="text" class="form-control" id="manufacturerName" name="manufacturerName">
+                <label for="newManufacturer">New Manufacturer Name:</label>
+                <input type="text" class="form-control" id="newManufacturer" name="name" required>
             </div>
             <button type="submit" class="btn btn-success">Add Manufacturer</button>
         </form>
