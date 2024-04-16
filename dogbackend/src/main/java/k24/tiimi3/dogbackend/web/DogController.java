@@ -49,7 +49,7 @@ public class DogController {
             model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
             model.addAttribute("categories", categoryRepo.findAll());
             model.addAttribute("manufacturers", manufacterRepo.findAll());
-            if (dog.getStringPrice() == null) {
+            if (dog.getId() == null) {
                 return "addClothes";
             } else {
                 return "editClothes";
@@ -60,7 +60,7 @@ public class DogController {
                 model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
                 model.addAttribute("categories", categoryRepo.findAll());
                 model.addAttribute("manufacturers", manufacterRepo.findAll());
-                if (dog.getStringPrice() == null) {
+                if (dog.getId() == null) {
                     return "addClothes";
                 } else {
                     return "editClothes";
