@@ -51,8 +51,7 @@ class DogbackendApplicationTests {
 		Manufacturer manufacturer = new Manufacturer("Gucci");
 		manufacturerRepository.save(manufacturer);
 
-		Dog dog = new Dog("Striped Gucci Socks", "Red/Green", "M",
-		 12.90, manufacturer, category);
+		Dog dog = new Dog("Striped Gucci Socks", "Red/Green", "M", "12.90",12.90, manufacturer, category);
 
 		dogRepository.save(dog);
 
@@ -68,6 +67,7 @@ class DogbackendApplicationTests {
 		assertEquals("Red/Green", savedDog.getColor());
 		assertEquals("M", savedDog.getSize());
 		assertEquals(12.90, savedDog.getPrice());
+		assertEquals("12.90", savedDog.getStringPrice());
 		assertEquals("Socks", savedDog.getCategory().getName());
 		assertEquals("Gucci", savedDog.getManufacturer().getName());
 	}
