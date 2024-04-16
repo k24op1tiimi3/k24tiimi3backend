@@ -43,9 +43,9 @@ public class DogbackendApplication {
             manufacturerRepository.save(Nukka);
             manufacturerRepository.save(Zukka);
 
-            dogRepository.save(new Dog("Jacket", "Red", "M", 59.99, Rukka, jackets));
-            dogRepository.save(new Dog("Hat", "Blue", "M", 59.99, Nukka, hats));
-            dogRepository.save(new Dog("Necklace", "Silver", "M", 59.99, Zukka, accessories));
+            dogRepository.save(new Dog("Jacket", "Red", "M", "59.99",0, Rukka, jackets));
+            dogRepository.save(new Dog("Hat", "Blue", "M", "59.99",0, Nukka, hats));
+            dogRepository.save(new Dog("Necklace", "Silver", "M","59.99", 0, Zukka, accessories));
 
             // Check added categories, manufacturers and clothes
             log.info("------------------------------");
