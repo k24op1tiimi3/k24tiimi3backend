@@ -26,7 +26,7 @@
                     <td th:text="${dog.category.name}">Category</td>
                     <td th:text="${dog.color}">Color</td>
                     <td th:text="${dog.size}">Size</td>
-                    <td th:text="${dog.price}">Price</td>
+                    <td>€ <span th:text="${#numbers.formatDecimal(dog.price, 0, 'COMMA', 2, 'POINT')}">Price</span></td>
                     <td th:text="${dog.manufacturer.name}">Manufacturer</td>
                     <td>
                         <form th:action="@{'/deleteClothing/' + ${dog.id}}">
@@ -43,7 +43,7 @@
 
         <a class="btn btn-success" th:href="@{/addClothes}"
             >Add Clothes</a>
-        
+
         <a class="btn btn-secondary" th:href="@{/index}"
             >Back to Home page</a>
     </div>

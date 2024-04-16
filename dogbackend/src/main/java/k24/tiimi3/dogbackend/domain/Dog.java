@@ -1,13 +1,6 @@
 package k24.tiimi3.dogbackend.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-import java.text.DecimalFormat;
+import jakarta.persistence.*;
 
 @Entity
 public class Dog {
@@ -18,7 +11,9 @@ public class Dog {
     private String title;
     private String color;
     private String size;
+    private String stringPrice;
     private double price;
+
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
@@ -31,12 +26,13 @@ public class Dog {
     public Dog() {
     }
 
-    public Dog(String title, String color, String size, double price, Manufacturer manufacturer,
+    public Dog(String title, String color, String size, String stringPrice, double price, Manufacturer manufacturer,
                Category category) {
         this.title = title;
         this.color = color;
         this.size = size;
-        this.price = price;
+        this.stringPrice = stringPrice;
+        this.price = Double.parseDouble(stringPrice);
         this.manufacturer = manufacturer;
         this.category = category;
     }
@@ -73,6 +69,14 @@ public class Dog {
         this.size = size;
     }
 
+    public String getStringPrice() {
+        return stringPrice;
+    }
+
+    public void setStringPrice(String stringPrice) {
+        this.stringPrice = stringPrice;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -99,15 +103,9 @@ public class Dog {
 
     @Override
     public String toString() {
-        // ToDo: Fix decimal numbers
-        // At the moment if you add an item with i.e. the price set as 60.00, it shows up as 60.0 when added
-        // Possible fix below, can't test right now because the manufacturer in /addClothes is broken
-
-        DecimalFormat df = new DecimalFormat("0.00");
-        String formattedPrice = df.format(price);
 
         return "Dog [id=" + id + ", title=" + title + ", color=" + color + ", size=" + size
-                + ", price=" + formattedPrice + ", manufacturer=" + manufacturer + ", category=" + category + "]";
+                + ", price=" + price + ", manufacturer=" + manufacturer + ", category=" + category + "]";
     }
 
 }
