@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Add Clothing</title>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <script type="text/javascript">
+        function confirmBack() {
+            return confirm("Are you sure you want to go back to Clothes List? Any unsaved changes will be lost.");
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -52,7 +57,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <a class="btn btn-secondary mt-3" th:href="@{/clothesList}">Back to Clothes List</a>
+    <a id="backButton" class="btn btn-secondary mt-3" th:href="@{/clothesList}" onclick="return confirmBack();">Back to Clothes List</a>
 </div>
 </body>
 </html>

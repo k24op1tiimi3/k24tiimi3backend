@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Edit Manufacturer</title>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <script type="text/javascript">
+        function confirmBack() {
+            return confirm("Are you sure you want to go back to Manufacturer List? Any unsaved changes will be lost.");
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -16,7 +21,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
-        <a class="btn btn-secondary mt-3" th:href="@{/manufacturerList}">Back to Manufacturer List</a>
+        <a id="backButton" class="btn btn-secondary mt-3" th:href="@{/manufacturerList}" onclick="return confirmBack();">Back to Manufacturer List</a>
     </div>
 </body>
 </html>
