@@ -11,27 +11,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import k24.tiimi3.dogbackend.domain.Category;
 import k24.tiimi3.dogbackend.domain.CategoryRepository;
-import k24.tiimi3.dogbackend.domain.Dog;
-import k24.tiimi3.dogbackend.domain.DogRepository;
+import k24.tiimi3.dogbackend.domain.Product;
+import k24.tiimi3.dogbackend.domain.ProductRepository;
 import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
 @SpringBootTest
 class DogbackendApplicationTests {
 
-
 	@Autowired
-	private DogRepository dogRepository;
+	private ProductRepository dogRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private ManufacturerRepository manufacturerRepository;
 
-
 	@Test
 	void contextLoads() {
 	}
-
 
 	// Trying to find data saved inside the Repository
 	@Test
@@ -51,14 +48,14 @@ class DogbackendApplicationTests {
 		Manufacturer manufacturer = new Manufacturer("Gucci");
 		manufacturerRepository.save(manufacturer);
 
-		Dog dog = new Dog("Striped Gucci Socks", "Red/Green", "M", "12.90",12.90, manufacturer, category);
+		Product dog = new Product("Striped Gucci Socks", "Red/Green", "M", "12.90", 12.90, manufacturer, category);
 
 		dogRepository.save(dog);
 
-		// Saving our created dog from Repository. 
-		Dog savedDog = dogRepository.findById(dog.getId()).get();
+		// Saving our created dog from Repository.
+		Product savedDog = dogRepository.findById(dog.getId()).get();
 
-			// Assertions
+		// Assertions
 		// Checking that our dog is saved in dogRepository
 		assertNotNull(savedDog);
 

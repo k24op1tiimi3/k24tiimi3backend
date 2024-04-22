@@ -19,7 +19,7 @@ public class Manufacturer {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
     @JsonIgnore
-    private List<Dog> dogs;
+    private List<Product> dogs;
 
     public Manufacturer() {
     }
@@ -44,11 +44,11 @@ public class Manufacturer {
         this.name = name;
     }
 
-    public List<Dog> getDogs() {
+    public List<Product> getDogs() {
         return dogs;
     }
 
-    public void setDogs(List<Dog> dogs) {
+    public void setDogs(List<Product> dogs) {
         this.dogs = dogs;
     }
 

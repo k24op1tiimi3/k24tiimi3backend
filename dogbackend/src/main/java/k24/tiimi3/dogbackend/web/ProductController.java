@@ -1,8 +1,8 @@
 package k24.tiimi3.dogbackend.web;
 
 import k24.tiimi3.dogbackend.domain.CategoryRepository;
-import k24.tiimi3.dogbackend.domain.Dog;
-import k24.tiimi3.dogbackend.domain.DogRepository;
+import k24.tiimi3.dogbackend.domain.Product;
+import k24.tiimi3.dogbackend.domain.ProductRepository;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 @Controller
-public class DogController {
+public class ProductController {
     @Autowired
-    private DogRepository dogRepo;
+    private ProductRepository dogRepo;
     @Autowired
     private CategoryRepository categoryRepo;
     @Autowired
@@ -36,14 +35,14 @@ public class DogController {
 
     @GetMapping("/addClothes")
     public String AddNewClothing(Model model) {
-        model.addAttribute("clothing", new Dog());
+        model.addAttribute("clothing", new Product());
         model.addAttribute("categories", categoryRepo.findAll());
         model.addAttribute("manufacturers", manufacterRepo.findAll());
         return "addClothes";
     }
 
     @PostMapping("/saveClothing")
-    public String SaveClothing(@ModelAttribute Dog dog, Model model) {
+    public String SaveClothing(@ModelAttribute Product dog, Model model) {
         String price = dog.getStringPrice();
         if (price == null || !price.matches("[0-9.,]*")) {
             model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
@@ -80,7 +79,7 @@ public class DogController {
 
     @GetMapping("/editClothes/{id}")
     public String getMethodName(@PathVariable("id") Long dogId, Model model) {
-        Dog dog = dogRepo.findById(dogId).get();
+        Product dog = dogRepo.findById(dogId).get();
         model.addAttribute("dog", dog);
         model.addAttribute("categories", categoryRepo.findAll());
         model.addAttribute("manufacturers", manufacterRepo.findAll());

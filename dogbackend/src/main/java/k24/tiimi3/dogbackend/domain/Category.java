@@ -20,7 +20,7 @@ public class Category {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     @JsonIgnore
-    private List<Dog> dogs;
+    private List<Product> dogs;
 
     public Category() {
     }
@@ -45,16 +45,16 @@ public class Category {
         this.name = name;
     }
 
-    public List<Dog> getDogs() {
+    public List<Product> getDogs() {
         return dogs;
     }
 
-    public void setDogs(List<Dog> dogs) {
+    public void setDogs(List<Product> dogs) {
         this.dogs = dogs;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[categoryId=" + categoryId + ",name=" + name + "]";
     }
 }

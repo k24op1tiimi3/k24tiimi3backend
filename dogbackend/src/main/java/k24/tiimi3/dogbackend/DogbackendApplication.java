@@ -11,8 +11,8 @@ import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 import k24.tiimi3.dogbackend.domain.Category;
 import k24.tiimi3.dogbackend.domain.CategoryRepository;
-import k24.tiimi3.dogbackend.domain.Dog;
-import k24.tiimi3.dogbackend.domain.DogRepository;
+import k24.tiimi3.dogbackend.domain.Product;
+import k24.tiimi3.dogbackend.domain.ProductRepository;
 
 @SpringBootApplication
 public class DogbackendApplication {
@@ -24,7 +24,8 @@ public class DogbackendApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(CategoryRepository categoryRepository, DogRepository dogRepository, ManufacturerRepository manufacturerRepository) {
+    public CommandLineRunner demo(CategoryRepository categoryRepository, ProductRepository dogRepository,
+            ManufacturerRepository manufacturerRepository) {
         return (args) -> {
 
             Category jackets = new Category("Jackets");
@@ -43,9 +44,9 @@ public class DogbackendApplication {
             manufacturerRepository.save(Nukka);
             manufacturerRepository.save(Zukka);
 
-            dogRepository.save(new Dog("Jacket", "Red", "M", "59.99",0, Rukka, jackets));
-            dogRepository.save(new Dog("Hat", "Blue", "M", "59.99",0, Nukka, hats));
-            dogRepository.save(new Dog("Necklace", "Silver", "M","59.99", 0, Zukka, accessories));
+            dogRepository.save(new Product("Jacket", "Red", "M", "59.99", 0, Rukka, jackets));
+            dogRepository.save(new Product("Hat", "Blue", "M", "59.99", 0, Nukka, hats));
+            dogRepository.save(new Product("Necklace", "Silver", "M", "59.99", 0, Zukka, accessories));
 
             // Check added categories, manufacturers and clothes
             log.info("------------------------------");
@@ -63,7 +64,7 @@ public class DogbackendApplication {
             log.info("------------------------------");
 
             log.info("Fetch Clothes");
-            for (Dog dog : dogRepository.findAll()) {
+            for (Product dog : dogRepository.findAll()) {
                 log.info(dog.toString());
             }
             log.info("------------------------------");

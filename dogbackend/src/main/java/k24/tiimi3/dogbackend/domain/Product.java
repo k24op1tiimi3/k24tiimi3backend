@@ -3,7 +3,7 @@ package k24.tiimi3.dogbackend.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class Dog {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +14,6 @@ public class Dog {
     private String stringPrice;
     private double price;
 
-
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
@@ -23,11 +22,11 @@ public class Dog {
     @JoinColumn(name = "manufacturerId")
     private Manufacturer manufacturer;
 
-    public Dog() {
+    public Product() {
     }
 
-    public Dog(String title, String color, String size, String stringPrice, double price, Manufacturer manufacturer,
-               Category category) {
+    public Product(String title, String color, String size, String stringPrice, double price, Manufacturer manufacturer,
+            Category category) {
         this.title = title;
         this.color = color;
         this.size = size;
@@ -109,4 +108,3 @@ public class Dog {
     }
 
 }
-
