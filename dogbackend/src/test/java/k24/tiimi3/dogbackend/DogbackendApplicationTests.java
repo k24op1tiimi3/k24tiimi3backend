@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import k24.tiimi3.dogbackend.domain.Category;
-import k24.tiimi3.dogbackend.domain.CategoryRepository;
 import k24.tiimi3.dogbackend.domain.Product;
 import k24.tiimi3.dogbackend.domain.ProductRepository;
 import k24.tiimi3.dogbackend.domain.Size;
 import k24.tiimi3.dogbackend.domain.SizeRepository;
+import k24.tiimi3.dogbackend.domain.Type;
+import k24.tiimi3.dogbackend.domain.TypeRepository;
 import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
@@ -21,7 +21,7 @@ class DogbackendApplicationTests {
 	@Autowired
 	private ProductRepository dogRepository;
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private TypeRepository typeRepository;
 	@Autowired
 	private ManufacturerRepository manufacturerRepository;
 	@Autowired
@@ -35,7 +35,7 @@ class DogbackendApplicationTests {
 	@Test
 	void dataFoundInRepository() {
 		dogRepository.findAll();
-		categoryRepository.findAll();
+		typeRepository.findAll();
 		manufacturerRepository.findAll();
 		sizeRepository.findAll();
 	}
@@ -44,15 +44,16 @@ class DogbackendApplicationTests {
 	@Test
 	void insertingNewEntityToRepository() {
 
-		Category category = new Category("Socks");
-		categoryRepository.save(category);
+		Type type = new Type("Clothing");
+		typeRepository.save(type);
 
 		Manufacturer manufacturer = new Manufacturer("Gucci");
 		manufacturerRepository.save(manufacturer);
 
 		Size size = new Size("M");
+		sizeRepository.save(size);
 
-		Product dog = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, category, manufacturer, size);
+		Product dog = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, type, manufacturer, size);
 
 		dogRepository.save(dog);
 
@@ -66,10 +67,10 @@ class DogbackendApplicationTests {
 		// Checking the components in savedDog match with our new Dog()
 		assertEquals("Striped Gucci Socks", savedDog.getTitle());
 		assertEquals("Red/Green", savedDog.getColor());
-		assertEquals("M", savedDog.getSize());
+		assertEquals("M", savedDog.getSize().getSize());
 		assertEquals(12.90, savedDog.getPrice());
 		assertEquals("12.90", savedDog.getStringPrice());
-		assertEquals("Socks", savedDog.getCategory().getName());
+		assertEquals("Clothing", savedDog.getType().getName());
 		assertEquals("Gucci", savedDog.getManufacturer().getName());
 	}
 }

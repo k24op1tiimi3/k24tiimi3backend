@@ -4,29 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import k24.tiimi3.dogbackend.domain.ProductRepository;
-import k24.tiimi3.dogbackend.domain.CategoryRepository;
+import k24.tiimi3.dogbackend.domain.Type;
+import k24.tiimi3.dogbackend.domain.TypeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import k24.tiimi3.dogbackend.domain.Product;
-import k24.tiimi3.dogbackend.domain.Category;
 
 @RestController
 @RequestMapping("/api")
 public class RestProductController {
 
     @Autowired
-    private ProductRepository dogRepo;
+    private ProductRepository productRepo;
     @Autowired
-    private CategoryRepository categoryRepo;
+    private TypeRepository typeRepo;
 
-    @GetMapping("/clothes")
-    public Iterable<Product> GetClothes() {
-        return dogRepo.findAll();
+    @GetMapping("/products")
+    public Iterable<Product> GetProducts() {
+        return productRepo.findAll();
     }
 
-    @GetMapping("/clothes/jackets")
-    public Iterable<Product> GetJackets() {
-        Category category = categoryRepo.findByName("Jackets").get(0);
-        return dogRepo.findByCategory(category);
+    @GetMapping("/products/clothing")
+    public Iterable<Product> GetClothing() {
+        Type type = typeRepo.findByName("Clothing").get(0);
+        return productRepo.findByType(type);
     }
 
 }

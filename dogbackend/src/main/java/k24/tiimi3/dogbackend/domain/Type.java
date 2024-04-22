@@ -12,29 +12,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Category {
+public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long typeId;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "type")
     @JsonIgnore
-    private List<Product> dogs;
+    private List<Product> products;
 
-    public Category() {
+    public Type() {
     }
 
-    public Category(String name) {
+    public Type(String name) {
         this.name = name;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
     public String getName() {
@@ -45,16 +45,17 @@ public class Category {
         this.name = name;
     }
 
-    public List<Product> getDogs() {
-        return dogs;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setDogs(List<Product> dogs) {
-        this.dogs = dogs;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public String toString() {
-        return "[categoryId=" + categoryId + ",name=" + name + "]";
+        return "Type [typeId=" + typeId + ", name=" + name + "]";
     }
+
 }

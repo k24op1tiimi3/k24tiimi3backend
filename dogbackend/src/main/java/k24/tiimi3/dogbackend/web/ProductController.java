@@ -1,8 +1,9 @@
 package k24.tiimi3.dogbackend.web;
 
-import k24.tiimi3.dogbackend.domain.CategoryRepository;
 import k24.tiimi3.dogbackend.domain.Product;
 import k24.tiimi3.dogbackend.domain.ProductRepository;
+import k24.tiimi3.dogbackend.domain.SizeRepository;
+import k24.tiimi3.dogbackend.domain.TypeRepository;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,75 +16,79 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProductController {
     @Autowired
-    private ProductRepository dogRepo;
+    private ProductRepository productRepo;
     @Autowired
-    private CategoryRepository categoryRepo;
+    private TypeRepository typeRepo;
     @Autowired
     private ManufacturerRepository manufacterRepo;
+    @Autowired
+    private SizeRepository sizeRepo;
 
     @GetMapping("/index")
     public String GetIndex(Model model) {
-        model.addAttribute("dogs", dogRepo.findAll());
+        model.addAttribute("products", productRepo.findAll());
         return "index";
     }
 
-    @GetMapping("/clothesList")
+    @GetMapping("/productlist")
     public String getClothes(Model model) {
-        model.addAttribute("dogs", dogRepo.findAll());
-        return "clothesList";
+        model.addAttribute("products", productRepo.findAll());
+        return "productlist";
     }
 
-    @GetMapping("/addClothes")
+    @GetMapping("/addproduct")
     public String AddNewClothing(Model model) {
-        model.addAttribute("clothing", new Product());
-        model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("product", new Product());
+        model.addAttribute("types", typeRepo.findAll());
+        model.addAttribute("sizes", sizeRepo.findAll());
         model.addAttribute("manufacturers", manufacterRepo.findAll());
-        return "addClothes";
+        return "addproduct";
     }
 
-    @PostMapping("/saveClothing")
-    public String SaveClothing(@ModelAttribute Product dog, Model model) {
-        String price = dog.getStringPrice();
+    @PostMapping("/saveproduct")
+    public String SaveClothing(@ModelAttribute Product product, Model model) {
+        String price = product.getStringPrice();
         if (price == null || !price.matches("[0-9.,]*")) {
             model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
-            model.addAttribute("categories", categoryRepo.findAll());
+            model.addAttribute("types", typeRepo.findAll());
             model.addAttribute("manufacturers", manufacterRepo.findAll());
-            if (dog.getId() == null) {
-                return "addClothes";
+            if (product.getId() == null) {
+                return "addproduct";
             } else {
-                return "editClothes";
+                return "editproduct";
             }
         } else {
-            dog.setPrice(Double.parseDouble(price.replace(",", ".")));
-            if (dog.getPrice() <= 0) {
+            product.setPrice(Double.parseDouble(price.replace(",", ".")));
+            if (product.getPrice() <= 0) {
                 model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
-                model.addAttribute("categories", categoryRepo.findAll());
+                model.addAttribute("types", typeRepo.findAll());
                 model.addAttribute("manufacturers", manufacterRepo.findAll());
-                if (dog.getId() == null) {
-                    return "addClothes";
+                if (product.getId() == null) {
+                    return "addproduct";
                 } else {
-                    return "editClothes";
+                    return "editproduct";
                 }
             } else {
-                dogRepo.save(dog);
-                return "redirect:/clothesList";
+                productRepo.save(product);
+                return "redirect:/productlist";
             }
         }
     }
 
-    @GetMapping("/deleteClothing/{id}")
-    public String DeleteClothing(@PathVariable("id") Long dogId) {
-        dogRepo.deleteById(dogId);
-        return "redirect:/clothesList";
+    @GetMapping("/deleteproduct/{id}")
+    public String DeleteClothing(@PathVariable("id") Long productId) {
+        productRepo.deleteById(productId);
+        return "redirect:/productlist";
     }
 
-    @GetMapping("/editClothes/{id}")
-    public String getMethodName(@PathVariable("id") Long dogId, Model model) {
-        Product dog = dogRepo.findById(dogId).get();
-        model.addAttribute("dog", dog);
-        model.addAttribute("categories", categoryRepo.findAll());
+    @GetMapping("/editproduct/{id}")
+    public String getMethodName(@PathVariable("id") Long productId, Model model) {
+        Product product = productRepo.findById(productId).get();
+        model.addAttribute("product", product);
+        model.addAttribute("types", typeRepo.findAll());
+        model.addAttribute("sizes", sizeRepo.findAll());
         model.addAttribute("manufacturers", manufacterRepo.findAll());
-        return "editClothes";
+        return "editproduct";
     }
 
 }
