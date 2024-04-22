@@ -2,9 +2,6 @@ package k24.tiimi3.dogbackend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.isNotNull;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +10,8 @@ import k24.tiimi3.dogbackend.domain.Category;
 import k24.tiimi3.dogbackend.domain.CategoryRepository;
 import k24.tiimi3.dogbackend.domain.Product;
 import k24.tiimi3.dogbackend.domain.ProductRepository;
+import k24.tiimi3.dogbackend.domain.Size;
+import k24.tiimi3.dogbackend.domain.SizeRepository;
 import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
@@ -25,6 +24,8 @@ class DogbackendApplicationTests {
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private ManufacturerRepository manufacturerRepository;
+	@Autowired
+	private SizeRepository sizeRepository;
 
 	@Test
 	void contextLoads() {
@@ -36,6 +37,7 @@ class DogbackendApplicationTests {
 		dogRepository.findAll();
 		categoryRepository.findAll();
 		manufacturerRepository.findAll();
+		sizeRepository.findAll();
 	}
 
 	// Creating a new entity and saving the entity to our DogRepository
@@ -48,7 +50,9 @@ class DogbackendApplicationTests {
 		Manufacturer manufacturer = new Manufacturer("Gucci");
 		manufacturerRepository.save(manufacturer);
 
-		Product dog = new Product("Striped Gucci Socks", "Red/Green", "M", "12.90", 12.90, manufacturer, category);
+		Size size = new Size("M");
+
+		Product dog = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, category, manufacturer, size);
 
 		dogRepository.save(dog);
 

@@ -10,7 +10,6 @@ public class Product {
 
     private String title;
     private String color;
-    private String size;
     private String stringPrice;
     private double price;
 
@@ -22,19 +21,26 @@ public class Product {
     @JoinColumn(name = "manufacturerId")
     private Manufacturer manufacturer;
 
+    @ManyToOne
+    @JoinColumn(name = "sizeId")
+    private Size size;
+
+
+    
     public Product() {
     }
 
-    public Product(String title, String color, String size, String stringPrice, double price, Manufacturer manufacturer,
-            Category category) {
+    public Product(String title, String color, String stringPrice, double price, Category category,
+            Manufacturer manufacturer, Size size) {
         this.title = title;
         this.color = color;
-        this.size = size;
         this.stringPrice = stringPrice;
-        this.price = Double.parseDouble(stringPrice);
-        this.manufacturer = manufacturer;
+        this.price = price;
         this.category = category;
+        this.manufacturer = manufacturer;
+        this.size = size;
     }
+
 
     public Long getId() {
         return id;
@@ -58,14 +64,6 @@ public class Product {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public String getStringPrice() {
@@ -100,11 +98,19 @@ public class Product {
         this.category = category;
     }
 
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    
     @Override
     public String toString() {
 
         return "Dog [id=" + id + ", title=" + title + ", color=" + color + ", size=" + size
                 + ", price=" + price + ", manufacturer=" + manufacturer + ", category=" + category + "]";
     }
-
 }

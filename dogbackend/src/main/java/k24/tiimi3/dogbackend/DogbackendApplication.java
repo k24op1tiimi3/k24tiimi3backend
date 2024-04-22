@@ -13,6 +13,8 @@ import k24.tiimi3.dogbackend.domain.Category;
 import k24.tiimi3.dogbackend.domain.CategoryRepository;
 import k24.tiimi3.dogbackend.domain.Product;
 import k24.tiimi3.dogbackend.domain.ProductRepository;
+import k24.tiimi3.dogbackend.domain.Size;
+import k24.tiimi3.dogbackend.domain.SizeRepository;
 
 @SpringBootApplication
 public class DogbackendApplication {
@@ -24,8 +26,8 @@ public class DogbackendApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(CategoryRepository categoryRepository, ProductRepository dogRepository,
-            ManufacturerRepository manufacturerRepository) {
+    public CommandLineRunner demo(CategoryRepository categoryRepository, ProductRepository productRepository,
+            ManufacturerRepository manufacturerRepository, SizeRepository sizeRepository) {
         return (args) -> {
 
             Category jackets = new Category("Jackets");
@@ -36,6 +38,11 @@ public class DogbackendApplication {
             Manufacturer Nukka = new Manufacturer("Nukka");
             Manufacturer Zukka = new Manufacturer("Zukka");
 
+            Size sizeS = new Size("S");
+            Size sizeM = new Size("M");
+            Size sizeL = new Size("L");
+
+
             categoryRepository.save(jackets);
             categoryRepository.save(hats);
             categoryRepository.save(accessories);
@@ -44,9 +51,13 @@ public class DogbackendApplication {
             manufacturerRepository.save(Nukka);
             manufacturerRepository.save(Zukka);
 
-            dogRepository.save(new Product("Jacket", "Red", "M", "59.99", 0, Rukka, jackets));
-            dogRepository.save(new Product("Hat", "Blue", "M", "59.99", 0, Nukka, hats));
-            dogRepository.save(new Product("Necklace", "Silver", "M", "59.99", 0, Zukka, accessories));
+            sizeRepository.save(sizeS);
+            sizeRepository.save(sizeM);
+            sizeRepository.save(sizeL);
+
+            productRepository.save(new Product("Jacket", "Red", "59.99", 59.99, jackets, Rukka, sizeL));
+            productRepository.save(new Product("Hat", "Blue", "19.99", 19.99, hats, Nukka, sizeM));
+            productRepository.save(new Product("Necklace", "Silver", "29.99", 29.99, accessories, Zukka, sizeS));
 
             // Check added categories, manufacturers and clothes
             log.info("------------------------------");
@@ -64,8 +75,8 @@ public class DogbackendApplication {
             log.info("------------------------------");
 
             log.info("Fetch Clothes");
-            for (Product dog : dogRepository.findAll()) {
-                log.info(dog.toString());
+            for (Product product : productRepository.findAll()) {
+                log.info(product.toString());
             }
             log.info("------------------------------");
         };
