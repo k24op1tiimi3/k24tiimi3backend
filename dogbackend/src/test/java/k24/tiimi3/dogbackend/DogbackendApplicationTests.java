@@ -19,7 +19,7 @@ import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 class DogbackendApplicationTests {
 
 	@Autowired
-	private ProductRepository dogRepository;
+	private ProductRepository productRepository;
 	@Autowired
 	private TypeRepository typeRepository;
 	@Autowired
@@ -34,7 +34,7 @@ class DogbackendApplicationTests {
 	// Trying to find data saved inside the Repository
 	@Test
 	void dataFoundInRepository() {
-		dogRepository.findAll();
+		productRepository.findAll();
 		typeRepository.findAll();
 		manufacturerRepository.findAll();
 		sizeRepository.findAll();
@@ -53,24 +53,24 @@ class DogbackendApplicationTests {
 		Size size = new Size("M");
 		sizeRepository.save(size);
 
-		Product dog = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, type, manufacturer, size);
+		Product product = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, type, manufacturer, size);
 
-		dogRepository.save(dog);
+		productRepository.save(product);
 
 		// Saving our created dog from Repository.
-		Product savedDog = dogRepository.findById(dog.getId()).get();
+		Product savedProduct = productRepository.findById(product.getId()).get();
 
 		// Assertions
 		// Checking that our dog is saved in dogRepository
-		assertNotNull(savedDog);
+		assertNotNull(savedProduct);
 
 		// Checking the components in savedDog match with our new Dog()
-		assertEquals("Striped Gucci Socks", savedDog.getTitle());
-		assertEquals("Red/Green", savedDog.getColor());
-		assertEquals("M", savedDog.getSize().getSize());
-		assertEquals(12.90, savedDog.getPrice());
-		assertEquals("12.90", savedDog.getStringPrice());
-		assertEquals("Clothing", savedDog.getType().getName());
-		assertEquals("Gucci", savedDog.getManufacturer().getName());
+		assertEquals("Striped Gucci Socks", savedProduct.getTitle());
+		assertEquals("Red/Green", savedProduct.getColor());
+		assertEquals("M", savedProduct.getSize().getSize());
+		assertEquals(12.90, savedProduct.getPrice());
+		assertEquals("12.90", savedProduct.getStringPrice());
+		assertEquals("Clothing", savedProduct.getType().getName());
+		assertEquals("Gucci", savedProduct.getManufacturer().getName());
 	}
 }
