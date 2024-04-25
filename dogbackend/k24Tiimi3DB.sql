@@ -1,0 +1,11 @@
+cREATE TABLE IF NOT EXISTS Manufacturer (
+	id BIGSERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL
+);
+INSERT INTO Manufacturer (name) VALUES ('Rukka') , ('Nukka') , ('Wilson')
+
+CREATE TABLE IF NOT EXISTS Type (
+    id BIGSERIAL PRIMARY KEY,
+    type_name VARCHAR(50) NOT NULL
+);
+INSERT INTO 
