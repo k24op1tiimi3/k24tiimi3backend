@@ -5,6 +5,7 @@ import k24.tiimi3.dogbackend.domain.ProductRepository;
 import k24.tiimi3.dogbackend.domain.SizeRepository;
 import k24.tiimi3.dogbackend.domain.TypeRepository;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProductController {
@@ -23,6 +25,11 @@ public class ProductController {
     private ManufacturerRepository manufacterRepo;
     @Autowired
     private SizeRepository sizeRepo;
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
 
     @GetMapping("/index")
     public String GetIndex(Model model) {
