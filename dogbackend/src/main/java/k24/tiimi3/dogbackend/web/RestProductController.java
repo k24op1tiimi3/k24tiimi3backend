@@ -4,14 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import k24.tiimi3.dogbackend.domain.ProductRepository;
-<<<<<<< Updated upstream
 import k24.tiimi3.dogbackend.domain.Type;
 import k24.tiimi3.dogbackend.domain.TypeRepository;
-=======
-import k24.tiimi3.dogbackend.domain.CategoryRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
->>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.GetMapping;
 import k24.tiimi3.dogbackend.domain.Product;
 
