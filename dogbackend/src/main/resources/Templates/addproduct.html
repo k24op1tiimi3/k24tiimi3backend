@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for="size">Size</label>
             <select class="form-control" id="type" name="size">
-                <option th:each="size : ${sizes}" th:value="${size.sizeId}" th:text="${size.size}">
+                <option th:each="size : ${sizes}" th:value="${size.sizeId}" th:text="${size.name}">
                     Type Name
                 </option>
             </select>

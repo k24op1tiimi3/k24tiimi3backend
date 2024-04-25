@@ -62,10 +62,12 @@ public class ProductController {
             model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
             model.addAttribute("types", typeRepo.findAll());
             model.addAttribute("manufacturers", manufacterRepo.findAll());
+            model.addAttribute("sizes", sizeRepo.findAll());
+
             if (product.getId() == null) {
                 return "addproduct";
             } else {
-                return "editproduct";
+                return "editproduct";   
             }
         } else {
             product.setPrice(Double.parseDouble(price.replace(",", ".")));
@@ -73,6 +75,7 @@ public class ProductController {
                 model.addAttribute("errorMessage", "Invalid price. Please enter a valid positive number (0 - 9).");
                 model.addAttribute("types", typeRepo.findAll());
                 model.addAttribute("manufacturers", manufacterRepo.findAll());
+                model.addAttribute("sizes", sizeRepo.findAll());
                 if (product.getId() == null) {
                     return "addproduct";
                 } else {

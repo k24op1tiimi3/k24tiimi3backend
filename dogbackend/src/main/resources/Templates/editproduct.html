@@ -39,7 +39,7 @@
             <select class="form-control" id="size" th:field="*{size}">
                 <option th:each="size : ${sizes}"
                         th:value="${size.sizeId}"
-                        th:text="${size.size}">
+                        th:text="${size.name}">
                     Size
                 </option>
             </select>
