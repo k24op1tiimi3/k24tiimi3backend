@@ -1,6 +1,7 @@
 package k24.tiimi3.dogbackend.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,25 +23,22 @@ public class TypeController {
         return "typelist";
     }
 
-    @GetMapping("/addtype")
-    public String showAddCategoryForm(Model model) {
-        model.addAttribute("category", new Type());
-        return "addtype";
-    }
-
     @PostMapping("/savetype")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String saveCategory(@ModelAttribute Type type) {
         typeRepository.save(type);
         return "redirect:/typelist";
     }
 
     @PostMapping("/deletetype/{typeId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteCategory(@PathVariable Long typeId) {
         typeRepository.deleteById(typeId);
         return "redirect:/typelist";
     }
 
     @GetMapping("/editType/{typeId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String showEditTypeForm(@PathVariable Long typeId, Model model) {
         Type type = typeRepository.findById(typeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + typeId));

@@ -3,6 +3,7 @@ package k24.tiimi3.dogbackend.web;
 import k24.tiimi3.dogbackend.domain.Manufacturer;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,19 +24,15 @@ public class ManufacturerController {
         return "manufacturerList";
     }
 
-    @GetMapping("/addmanufacturer")
-    public String showAddManufacturerForm(Model model) {
-        model.addAttribute("manufacturer", new Manufacturer());
-        return "addmanufacturer";
-    }
-
     @PostMapping("/savemanufacturer")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String saveManufacturer(@ModelAttribute Manufacturer manufacturer) {
         manufacturerRepository.save(manufacturer);
         return "redirect:/manufacturerList";
     }
 
     @PostMapping("/deletemanufacturer/{manufacturerId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteManufacturer(@PathVariable Long manufacturerId) {
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer Id:" + manufacturerId));
@@ -49,17 +46,12 @@ public class ManufacturerController {
         return "redirect:/manufacturerList";
     }
 
-    @GetMapping("/editmanufacturer/{manufacturerId}")
+    @GetMapping("/editManufacturer/{manufacturerId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String showEditManufacturerForm(@PathVariable Long manufacturerId, Model model) {
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer Id:" + manufacturerId));
         model.addAttribute("manufacturer", manufacturer);
-        return "editmanufacturer";
-    }
-
-    @PostMapping("/updatemanufacturer")
-    public String updateManufacturer(@ModelAttribute Manufacturer manufacturer) {
-        manufacturerRepository.save(manufacturer);
-        return "redirect:/manufacturerList";
+        return "editManufacturer";
     }
 }

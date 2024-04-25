@@ -7,6 +7,7 @@ import k24.tiimi3.dogbackend.domain.TypeRepository;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/addproduct")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String AddNewClothing(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("types", typeRepo.findAll());
@@ -53,6 +55,7 @@ public class ProductController {
     }
 
     @PostMapping("/saveproduct")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String SaveClothing(@ModelAttribute Product product, Model model) {
         String price = product.getStringPrice();
         if (price == null || !price.matches("[0-9.,]*")) {
@@ -83,12 +86,14 @@ public class ProductController {
     }
 
     @GetMapping("/deleteproduct/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String DeleteClothing(@PathVariable("id") Long productId) {
         productRepo.deleteById(productId);
         return "redirect:/productlist";
     }
 
     @GetMapping("/editproduct/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String getMethodName(@PathVariable("id") Long productId, Model model) {
         Product product = productRepo.findById(productId).get();
         model.addAttribute("product", product);
