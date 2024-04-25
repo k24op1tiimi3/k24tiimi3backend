@@ -20,7 +20,6 @@
             <tbody>
                 <tr th:each="type : ${types}">
                     <td th:text="${type.name}">
-                        <Type>
                     </td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <form th:action="@{'/deletetype/' + ${type.typeId}}" method="post">

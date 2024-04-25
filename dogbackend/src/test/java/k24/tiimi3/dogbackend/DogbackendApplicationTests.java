@@ -67,7 +67,7 @@ class DogbackendApplicationTests {
 		// Checking the components in savedDog match with our new Dog()
 		assertEquals("Striped Gucci Socks", savedProduct.getTitle());
 		assertEquals("Red/Green", savedProduct.getColor());
-		assertEquals("M", savedProduct.getSize().getSize());
+		assertEquals("M", savedProduct.getSize().getName());
 		assertEquals(12.90, savedProduct.getPrice());
 		assertEquals("12.90", savedProduct.getStringPrice());
 		assertEquals("Clothing", savedProduct.getType().getName());

@@ -5,5 +5,5 @@ import java.util.List;
 
 
 public interface SizeRepository extends CrudRepository <Size, Long>{
-    List<Size> findBySize(String size);
+    List<Size> findByName(String name);
 }

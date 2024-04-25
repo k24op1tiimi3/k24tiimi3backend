@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import k24.tiimi3.dogbackend.domain.Size;
 import k24.tiimi3.dogbackend.domain.SizeRepository;
 
-
+@Controller
 public class SizeController {
     @Autowired
     private SizeRepository sizeRepository;
@@ -20,14 +20,14 @@ public class SizeController {
     @GetMapping("/sizelist")
     public String getSizes(Model model) {
         model.addAttribute("sizes", sizeRepository.findAll());
-        model.addAttribute("size", new Size());
         return "sizelist";
     }
 
-    @PostMapping("/savesizes")
+    @PostMapping("/savesize")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveSize(@ModelAttribute Size size) {
         sizeRepository.save(size);
+        System.out.println(sizeRepository.toString());
         return "redirect:/sizelist";
     }
 
@@ -53,12 +53,5 @@ public class SizeController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid size Id:" + sizeId));
         model.addAttribute("size", size);
         return "editsize";
-    }
-
-    @PostMapping("/updatesize")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String updateSize(@ModelAttribute Size size) {
-        sizeRepository.save(size);
-        return "redirect:/sizelist";
     }
 }

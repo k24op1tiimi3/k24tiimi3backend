@@ -19,8 +19,7 @@
             </thead>
             <tbody>
                 <tr th:each="size : ${sizes}">
-                    <td th:text="${size.size}">
-                        <Type>
+                    <td th:text="${size.name}">
                     </td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <form th:action="@{'/deletesize/' + ${size.sizeId}}" method="post">

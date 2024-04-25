@@ -19,7 +19,7 @@ public class Size {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long sizeId;
 
-    private String size;
+    private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "size")
     @JsonIgnore
@@ -29,8 +29,8 @@ public class Size {
     public Size() {
     }
 
-    public Size(String size) {
-        this.size = size;
+    public Size(String name) {
+        this.name = name;
     }
 
     public Long getSizeId() {
@@ -41,12 +41,12 @@ public class Size {
         this.sizeId = sizeId;
     }
 
-    public String getSize() {
-        return size;
+    public String getName() {
+        return name;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Product> getProducts() {
@@ -59,7 +59,7 @@ public class Size {
 
     @Override
     public String toString() {
-        return "Size [id=" + sizeId + ", size=" + size + "]";
+        return "Size [id=" + sizeId + ", name=" + name + "]";
     }
 
 
