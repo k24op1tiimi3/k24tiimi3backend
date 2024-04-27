@@ -1,22 +1,12 @@
 package k24.tiimi3.dogbackend;
 
+import k24.tiimi3.dogbackend.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import k24.tiimi3.dogbackend.domain.Manufacturer;
-import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
-import k24.tiimi3.dogbackend.domain.Product;
-import k24.tiimi3.dogbackend.domain.ProductRepository;
-import k24.tiimi3.dogbackend.domain.Size;
-import k24.tiimi3.dogbackend.domain.SizeRepository;
-import k24.tiimi3.dogbackend.domain.Type;
-import k24.tiimi3.dogbackend.domain.TypeRepository;
-import k24.tiimi3.dogbackend.domain.AppUser;
-import k24.tiimi3.dogbackend.domain.AppUserRepository;
 
 @SpringBootApplication
 public class DogbackendApplication {
@@ -28,8 +18,7 @@ public class DogbackendApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository,
-            SizeRepository sizeRepository, TypeRepository typeRepository, AppUserRepository urepository) {
+    public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository, SizeRepository sizeRepository, TypeRepository typeRepository, AppUserRepository urepository) {
         return (args) -> {
 
             Manufacturer Rukka = new Manufacturer("Rukka");
@@ -65,23 +54,37 @@ public class DogbackendApplication {
             productRepository.save(new Product("Hat", "Blue", "25.99", 19.99, clothing, Nukka, sizeM));
             productRepository.save(new Product("Tennis Balls", "Yellow", "19.99", 29.99, toy, Wilson, sizeS));
 
-            // Check added categories, manufacturers and clothes
-            log.info("------------------------------");
 
-            log.info("Fetch Categories");
-
-            log.info("Fetch Manufacturers");
-            for (Manufacturer manufacturers : manufacturerRepository.findAll()) {
-                log.info(manufacturers.toString());
-            }
-            log.info("------------------------------");
-
-            log.info("Fetch Clothes");
+            log.info("-------------------");
+            log.info("Fetch all products:");
             for (Product product : productRepository.findAll()) {
                 log.info(product.toString());
             }
-            log.info("------------------------------");
+            log.info("-------------------");
+
+            log.info("Fetch all manufacturers:");
+            for (Manufacturer manufacturer : manufacturerRepository.findAll()) {
+                log.info(manufacturer.toString());
+            }
+            log.info("-------------------");
+
+            log.info("Fetch all sizes:");
+            for (Size size : sizeRepository.findAll()) {
+                log.info(size.toString());
+            }
+            log.info("-------------------");
+
+            log.info("Fetch all types:");
+            for (Type type : typeRepository.findAll()) {
+                log.info(type.toString());
+            }
+            log.info("-------------------");
+
+            log.info("Fetch all users:");
+            for (AppUser user : urepository.findAll()) {
+                log.info(user.toString());
+            }
+            log.info("-------------------");
         };
     }
-
 }
