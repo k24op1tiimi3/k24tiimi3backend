@@ -27,19 +27,17 @@ public class UserController {
     }
 
     @GetMapping("/addUser")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public String AddUser(Model model) {
         model.addAttribute("user", new AppUser());
         return "addUser";
     }
 
     @PostMapping("/saveUser")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public String SaveUser(@ModelAttribute AppUser user, Model model) {
-        if (!user.getPassword().equals(user.getPasswordConfirm())) {
-            model.addAttribute("errorMessage", "Passwords do not match.");
-            return "addUser";
-        }
+        // if (!user.getPassword().equals(user.getPasswordConfirm())) {
+        //     model.addAttribute("errorMessage", "Passwords do not match.");
+        //     return "addUser";
+        // }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         appUserRepository.save(user);
         System.out.println("Fetch all users:");
