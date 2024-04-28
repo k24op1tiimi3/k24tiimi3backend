@@ -42,6 +42,10 @@ public class UserController {
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         appUserRepository.save(user);
+        System.out.println("Fetch all users:");
+        for (AppUser appUser : appUserRepository.findAll()) {
+            System.out.println(appUser.toString());
+        }
         return "redirect:/userlist";
     }
 
