@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Products</title>
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
     <script type="text/javascript">
         function confirmBack() {
             return confirm("Are you sure you want to go back to Product List? Any unsaved changes will be lost.");
@@ -14,58 +14,62 @@
 <div class="container">
     <h1 class="mt-5">Edit Products</h1>
 
-    <form th:object="${product}" th:action="@{/saveproduct}" method="post" class="mt-4">
-        <input type="hidden" th:field="*{id}" class="form-control">
+    <form class="mt-4" method="post" th:action="@{/saveproduct}" th:object="${product}">
+        <input class="form-control" th:field="*{id}" type="hidden">
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" th:field="${product.title}" maxlength="25" required="required">
+            <input class="form-control" id="title" maxlength="25" name="title" required="required" th:field="${product.title}"
+                   type="text">
         </div>
         <div class="form-group">
             <label for="type">Type</label>
             <select class="form-control" id="type" th:field="*{type}">
                 <option th:each="type : ${types}"
-                        th:value="${type.typeId}"
-                        th:text="${type.name}">
+                        th:text="${type.name}"
+                        th:value="${type.typeId}">
                     Type name
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label for="color">Color</label>
-            <input type="text" class="form-control" id="color" name="color" th:field="${product.color}" maxlength="25" required="required">
+            <input class="form-control" id="color" maxlength="25" name="color" required="required" th:field="${product.color}"
+                   type="text">
         </div>
         <div class="form-group">
             <label for="size">Size</label>
             <select class="form-control" id="size" th:field="*{size}">
                 <option th:each="size : ${sizes}"
-                        th:value="${size.sizeId}"
-                        th:text="${size.name}">
+                        th:text="${size.name}"
+                        th:value="${size.sizeId}">
                     Size
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label for="stringPrice">Price</label>
-            <input type="text" class="form-control" id="stringPrice" name="stringPrice" th:field="${product.stringPrice}"
-                   placeholder="Enter price"
-                   required="required">
+            <input class="form-control" id="stringPrice" name="stringPrice" placeholder="Enter price"
+                   required="required"
+                   th:field="${product.stringPrice}"
+                   type="text">
         </div>
-        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert" th:if="${errorMessage}">
             <p th:text="${errorMessage}"></p>
         </div>
         <div class="form-group">
             <label for="manufacturer">Manufacturer</label>
             <select class="form-control" id="manufacturer" th:field="*{manufacturer}">
                 <option th:each="manufacturer : ${manufacturers}"
-                        th:value="${manufacturer.manufacturerId}"
-                        th:text="${manufacturer.name}">
+                        th:text="${manufacturer.name}"
+                        th:value="${manufacturer.manufacturerId}">
                     Manufacturer Name
                 </option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" value="Save">Update</button>
+        <button class="btn btn-primary" type="submit" value="Save">Update</button>
     </form>
-    <a id="backButton" class="btn btn-secondary mt-3" th:href="@{/productlist}" onclick="return confirmBack();">Back to Products List</a>
+    <a class="btn btn-secondary mt-3" id="backButton" onclick="return confirmBack();" th:href="@{/productlist}">Back to
+        Products List</a>
 </div>
 </body>
 </html>

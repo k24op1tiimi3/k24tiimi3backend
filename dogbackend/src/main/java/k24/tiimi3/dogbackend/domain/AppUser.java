@@ -14,18 +14,21 @@ public class AppUser {
     private String username;
 
     @Column(name = "password", nullable = false)
-    private String passwordHash;
+    private String password;
 
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Transient
+    private String passwordConfirm;
+
     public AppUser() {
     }
 
-    public AppUser(String username, String passwordHash, String role) {
+    public AppUser(String username, String password, String role) {
         super();
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.password = password;
         this.role = role;
     }
 
@@ -45,12 +48,20 @@ public class AppUser {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String passwordHash) {
+        this.password = passwordHash;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public String getRole() {
@@ -60,5 +71,4 @@ public class AppUser {
     public void setRole(String role) {
         this.role = role;
     }
-
 }

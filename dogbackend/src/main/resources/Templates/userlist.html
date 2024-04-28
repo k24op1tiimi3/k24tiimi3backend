@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+</head>
+
+<body>
+<div class="container">
+    <h1 class="mt-5">User List</h1>
+    <table class="table table-striped mt-4">
+        <thead>
+        <tr>
+            <th>Username:</th>
+            <th>Role:</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Actions:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}">
+            </td>
+            <td th:text="${user.role}">
+            </td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <form method="post" th:action="@{'/deleteUser/' + ${user.id}}">
+                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');"
+                            type="submit">Delete
+                    </button>
+                </form>
+                <a class="btn btn-primary" th:href="@{'/editUser/' + ${user.id}}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <td sec:authorize="hasAuthority('ADMIN')">
+        <a class="btn btn-success" th:href="@{/addUser}">Add User</a>
+    </td>
+
+    <a class="btn btn-secondary" th:href="@{/index}">Back to Home page</a>
+</div>
+</body>
+
+</html>

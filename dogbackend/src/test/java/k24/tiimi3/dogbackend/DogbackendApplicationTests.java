@@ -88,7 +88,7 @@ class DogbackendApplicationTests {
 
         // Checking the components in savedUser match with our new User()
         assertEquals("testUser", savedUser.getUsername());
-        assertEquals("$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", savedUser.getPasswordHash());
+        assertEquals("$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", savedUser.getPassword());
         assertEquals("USER", savedUser.getRole());
     }
 }
