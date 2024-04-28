@@ -3,10 +3,10 @@ package k24.tiimi3.dogbackend.web;
 import k24.tiimi3.dogbackend.domain.AppUser;
 import k24.tiimi3.dogbackend.domain.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.http.HttpStatus;
 
 @CrossOrigin(origins = "*")
 
@@ -19,9 +19,21 @@ public class RestUserController {
     @Autowired
     private AppUserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @GetMapping("/appusers")
     public Iterable<AppUser> getMethodName() {
         return userRepository.findAll();
     }
 
+    @PostMapping("/appusers")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AppUser registerUser(@RequestBody AppUser newUser) {
+        if (!newUser.getPassword().equals(newUser.getPasswordConfirm())) {
+            throw new IllegalArgumentException("Passwords do not match.");
+        }
+        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+        return userRepository.save(newUser);
+    }
 }
