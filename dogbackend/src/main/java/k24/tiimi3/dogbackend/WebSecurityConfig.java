@@ -28,6 +28,7 @@ public class WebSecurityConfig {
                         .requestMatchers(antMatcher("/css/**")).permitAll()
                         .requestMatchers(antMatcher("/signup")).permitAll()
                         .requestMatchers(antMatcher("/saveuser")).permitAll()
+                        .requestMatchers(antMatcher("/api/**")).permitAll()
                         .anyRequest().authenticated())
                 .headers(headers -> headers
                         .frameOptions(frameoptions -> frameoptions.disable() // for h2 console
