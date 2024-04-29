@@ -38,6 +38,7 @@ public class DogbackendApplication {
 
             Type clothing = new Type("Clothing");
             Type toy = new Type("Toy");
+            Type food = new Type("Food");
 
             // salasana = (username)
             AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
@@ -56,6 +57,7 @@ public class DogbackendApplication {
 
             typeRepository.save(clothing);
             typeRepository.save(toy);
+            typeRepository.save(food);
 
             productRepository.save(new Product("Jacket", "Red", "59.99", 59.99, 10, clothing, Rukka, sizeL));
             productRepository.save(new Product("Hat", "Blue", "25.99", 19.99, 17, clothing, Nukka, sizeM));
