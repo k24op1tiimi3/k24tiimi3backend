@@ -12,6 +12,7 @@ public class Product {
     private String color;
     private String stringPrice;
     private double price;
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "typeId")
@@ -25,17 +26,17 @@ public class Product {
     @JoinColumn(name = "sizeId")
     private Size size;
 
-
-
     public Product() {
     }
 
-    public Product(String title, String color, String stringPrice, double price, Type type, Manufacturer manufacturer,
+    public Product(String title, String color, String stringPrice, double price, int quantity, Type type,
+            Manufacturer manufacturer,
             Size size) {
         this.title = title;
         this.color = color;
         this.stringPrice = stringPrice;
         this.price = price;
+        this.quantity = quantity;
         this.type = type;
         this.manufacturer = manufacturer;
         this.size = size;
@@ -79,6 +80,14 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Manufacturer getManufacturer() {

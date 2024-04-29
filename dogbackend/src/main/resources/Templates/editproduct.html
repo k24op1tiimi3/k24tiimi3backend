@@ -47,6 +47,12 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input class="form-control" id="quantity" name="quantity" placeholder="Enter quantity"
+                   required="required"
+                   th:field="${product.quantity}"
+                   type="number">
+        <div class="form-group">
             <label for="stringPrice">Price</label>
             <input class="form-control" id="stringPrice" name="stringPrice" placeholder="Enter price"
                    required="required"

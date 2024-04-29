@@ -1,68 +1,124 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Add Product</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link
+      href="/css/bootstrap.min.css"
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+      type="text/css"
+    />
     <script type="text/javascript">
-        function confirmBack() {
-            return confirm("Are you sure you want to go back to Product List? Any unsaved changes will be lost.");
-        }
+      function confirmBack() {
+        return confirm(
+          "Are you sure you want to go back to Product List? Any unsaved changes will be lost."
+        );
+      }
     </script>
-</head>
-<body>
-<div class="container">
-    <h1 class="mt-5">Add Product</h1>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Add Product</h1>
 
-    <form class="mt-4" method="post" th:action="@{/saveproduct}">
+      <form class="mt-4" method="post" th:action="@{/saveproduct}">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input class="form-control" id="title" maxlength="25" name="title" placeholder="Enter title"
-                   required="required" type="text">
+          <label for="title">Title</label>
+          <input
+            class="form-control"
+            id="title"
+            maxlength="25"
+            name="title"
+            placeholder="Enter title"
+            required="required"
+            type="text"
+          />
         </div>
         <div class="form-group">
-            <label for="type">Type</label>
-            <select class="form-control" id="type" name="type">
-                <option th:each="type : ${types}" th:text="${type.name}" th:value="${type.typeId}">
-                    Type Name
-                </option>
-            </select>
+          <label for="type">Type</label>
+          <select class="form-control" id="type" name="type">
+            <option
+              th:each="type : ${types}"
+              th:text="${type.name}"
+              th:value="${type.typeId}"
+            >
+              Type Name
+            </option>
+          </select>
         </div>
         <div class="form-group">
-            <label for="color">Color</label>
-            <input class="form-control" id="color" maxlength="25" name="color" placeholder="Enter color"
-                   required="required" type="text">
+          <label for="color">Color</label>
+          <input
+            class="form-control"
+            id="color"
+            maxlength="25"
+            name="color"
+            placeholder="Enter color"
+            required="required"
+            type="text"
+          />
         </div>
         <div class="form-group">
-            <label for="size">Size</label>
-            <select class="form-control" id="type" name="size">
-                <option th:each="size : ${sizes}" th:text="${size.name}" th:value="${size.sizeId}">
-                    Type Name
-                </option>
-            </select>
+          <label for="size">Size</label>
+          <select class="form-control" id="type" name="size">
+            <option
+              th:each="size : ${sizes}"
+              th:text="${size.name}"
+              th:value="${size.sizeId}"
+            >
+              Type Name
+            </option>
+          </select>
         </div>
         <div class="form-group">
-            <label for="stringPrice">Price</label>
-            <input class="form-control" id="stringPrice" name="stringPrice" placeholder="Enter price" required="required"
-                   type="text">
+          <label for="quantity">Quantity</label>
+          <input
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            placeholder="Enter quantity"
+            required="required"
+            type="number"
+            min="1"
+          />
+        </div>
+        <div class="form-group">
+          <label for="stringPrice">Price</label>
+          <input
+            class="form-control"
+            id="stringPrice"
+            name="stringPrice"
+            placeholder="Enter price"
+            required="required"
+            type="text"
+          />
         </div>
         <div class="alert alert-danger" role="alert" th:if="${errorMessage}">
-            <p th:text="${errorMessage}"></p>
+          <p th:text="${errorMessage}"></p>
         </div>
         <div class="form-group">
-            <label for="manufacturer">Manufacturer</label>
-            <select class="form-control" id="manufacturer" name="manufacturer">
-                <option th:each="manufacturer : ${manufacturers}" th:text="${manufacturer.name}"
-                        th:value="${manufacturer.manufacturerId}">Manufacturer Name
-                </option>
-            </select>
+          <label for="manufacturer">Manufacturer</label>
+          <select class="form-control" id="manufacturer" name="manufacturer">
+            <option
+              th:each="manufacturer : ${manufacturers}"
+              th:text="${manufacturer.name}"
+              th:value="${manufacturer.manufacturerId}"
+            >
+              Manufacturer Name
+            </option>
+          </select>
         </div>
 
         <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
+      </form>
 
-    <a class="btn btn-secondary mt-3" id="backButton" onclick="return confirmBack();" th:href="@{/productlist}">Back to
-        Product List</a>
-</div>
-</body>
+      <a
+        class="btn btn-secondary mt-3"
+        id="backButton"
+        onclick="return confirmBack();"
+        th:href="@{/productlist}"
+        >Back to Product List</a
+      >
+    </div>
+  </body>
 </html>

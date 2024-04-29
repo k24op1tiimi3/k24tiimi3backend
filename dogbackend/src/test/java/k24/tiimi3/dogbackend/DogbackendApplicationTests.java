@@ -22,7 +22,6 @@ class DogbackendApplicationTests {
     @Autowired
     private AppUserRepository userRepository;
 
-
     @Test
     void contextLoads() {
     }
@@ -50,7 +49,7 @@ class DogbackendApplicationTests {
         Size size = new Size("M");
         sizeRepository.save(size);
 
-        Product product = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, type, manufacturer, size);
+        Product product = new Product("Striped Gucci Socks", "Red/Green", "12.90", 12.90, 11, type, manufacturer, size);
 
         productRepository.save(product);
 
@@ -92,4 +91,3 @@ class DogbackendApplicationTests {
         assertEquals("USER", savedUser.getRole());
     }
 }
-

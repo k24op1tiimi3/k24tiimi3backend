@@ -24,7 +24,8 @@ public class DogbackendApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository, SizeRepository sizeRepository, TypeRepository typeRepository, AppUserRepository urepository) {
+    public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository,
+            SizeRepository sizeRepository, TypeRepository typeRepository, AppUserRepository urepository) {
         return (args) -> {
 
             Manufacturer Rukka = new Manufacturer("Rukka");
@@ -38,10 +39,10 @@ public class DogbackendApplication {
             Type clothing = new Type("Clothing");
             Type toy = new Type("Toy");
 
-
             // salasana = (username)
             AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
-            AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+            AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
+                    "ADMIN");
             urepository.save(user1);
             urepository.save(user2);
 
@@ -56,10 +57,9 @@ public class DogbackendApplication {
             typeRepository.save(clothing);
             typeRepository.save(toy);
 
-            productRepository.save(new Product("Jacket", "Red", "59.99", 59.99, clothing, Rukka, sizeL));
-            productRepository.save(new Product("Hat", "Blue", "25.99", 19.99, clothing, Nukka, sizeM));
-            productRepository.save(new Product("Tennis Balls", "Yellow", "19.99", 29.99, toy, Wilson, sizeS));
-
+            productRepository.save(new Product("Jacket", "Red", "59.99", 59.99, 10, clothing, Rukka, sizeL));
+            productRepository.save(new Product("Hat", "Blue", "25.99", 19.99, 17, clothing, Nukka, sizeM));
+            productRepository.save(new Product("Tennis Balls", "Yellow", "19.99", 29.99, 12, toy, Wilson, sizeS));
 
             log.info("-------------------");
             log.info("Fetch all products:");
