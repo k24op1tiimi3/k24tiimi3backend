@@ -16,49 +16,50 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
-    @Autowired
-    private UserDetailServiceImpl userDetailsService;
+        @Autowired
+        private UserDetailServiceImpl userDetailsService;
 
-    @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        @Bean
+        public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-        http
-                //.cors() // Enable CORS
-                //.and()
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher("/css/**")).permitAll()
-                        .requestMatchers(antMatcher("/signup")).permitAll()
-                        .requestMatchers(antMatcher("/saveuser")).permitAll()
-                        .requestMatchers(antMatcher("/api/**")).permitAll()
-                        .anyRequest().authenticated())
-                .headers(headers -> headers
-                        .frameOptions(frameoptions -> frameoptions.disable())) // for h2 console
-                .formLogin(formlogin -> formlogin
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/index", true)
-                        .permitAll())
-                .logout(logout -> logout
-                        .permitAll());
+                http
+                                // .cors() // Enable CORS
+                                // .and()
+                                .authorizeHttpRequests(authorize -> authorize
+                                                .requestMatchers(antMatcher("/css/**")).permitAll()
+                                                .requestMatchers(antMatcher("/signup")).permitAll()
+                                                .requestMatchers(antMatcher("/saveuser")).permitAll()
+                                                .requestMatchers(antMatcher("/api/**")).permitAll()
+                                                .anyRequest().authenticated())
+                                .headers(headers -> headers
+                                                .frameOptions(frameoptions -> frameoptions.disable())) // for h2 console
+                                .formLogin(formlogin -> formlogin
+                                                .loginPage("/login")
+                                                .defaultSuccessUrl("/index", true)
+                                                .permitAll())
+                                .logout(logout -> logout.permitAll())
+                                .csrf(csrf -> csrf.disable()); // not for production, just for development
 
-        return http.build();
-    }
+                return http.build();
+        }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+        @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+                auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        }
 
-    // CORS Configuration
-    // Frontend rekisteröitymistä varten, ei toimi :'(
+        // CORS Configuration
+        // Frontend rekisteröitymistä varten, ei toimi :'(
 
-    //@Bean
-    //public CorsConfigurationSource corsConfigurationSource() {
-    //    CorsConfiguration configuration = new CorsConfiguration();
-    //    configuration.addAllowedOrigin("*"); // Allow requests from any origin
-    //    configuration.addAllowedMethod("*"); // Allow all HTTP methods
-    //    configuration.addAllowedHeader("*"); // Allow all headers
-    //    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    //    source.registerCorsConfiguration("/**", configuration);
-    //    return source;
-    // }
+        // @Bean
+        // public CorsConfigurationSource corsConfigurationSource() {
+        // CorsConfiguration configuration = new CorsConfiguration();
+        // configuration.addAllowedOrigin("*"); // Allow requests from any origin
+        // configuration.addAllowedMethod("*"); // Allow all HTTP methods
+        // configuration.addAllowedHeader("*"); // Allow all headers
+        // UrlBasedCorsConfigurationSource source = new
+        // UrlBasedCorsConfigurationSource();
+        // source.registerCorsConfiguration("/**", configuration);
+        // return source;
+        // }
 }
