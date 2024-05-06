@@ -26,9 +26,9 @@ public class RestUserController {
     @PostMapping("/appusers")
     @ResponseStatus(HttpStatus.CREATED)
     public AppUser registerUser(@RequestBody AppUser newUser) {
-        if (!newUser.getPassword().equals(newUser.getPasswordConfirm())) {
-            throw new IllegalArgumentException("Passwords do not match.");
-        }
+        //  if (!newUser.getPassword().equals(newUser.getPasswordConfirm())) {
+        //      throw new IllegalArgumentException("Passwords do not match.");
+        //  }
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
         return userRepository.save(newUser);
     }
