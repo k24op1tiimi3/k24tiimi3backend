@@ -34,10 +34,10 @@ public class UserController {
 
     @PostMapping("/saveUser")
     public String SaveUser(@ModelAttribute AppUser user, Model model) {
-        // if (!user.getPassword().equals(user.getPasswordConfirm())) {
-        //     model.addAttribute("errorMessage", "Passwords do not match.");
-        //     return "addUser";
-        // }
+        if (!user.getPassword().equals(user.getPasswordConfirm())) {
+            model.addAttribute("errorMessage", "Passwords do not match.");
+            return "addUser";
+        }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         appUserRepository.save(user);
         System.out.println("Fetch all users:");

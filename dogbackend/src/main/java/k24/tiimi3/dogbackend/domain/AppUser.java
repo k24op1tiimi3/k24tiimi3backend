@@ -19,8 +19,8 @@ public class AppUser {
     @Column(name = "role", nullable = false)
     private String role;
 
-    // @Transient
-    // private String passwordConfirm;
+     @Transient
+     private String passwordConfirm;
 
     public AppUser() {
     }
@@ -56,13 +56,13 @@ public class AppUser {
         this.password = passwordHash;
     }
 
-    // public String getPasswordConfirm() {
-    //     return passwordConfirm;
-    // }
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
-    //public void setPasswordConfirm(String passwordConfirm) {
-    //    this.passwordConfirm = passwordConfirm;
-    // }
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
     public String getRole() {
         return role;
