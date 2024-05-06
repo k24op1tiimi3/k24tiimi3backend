@@ -36,7 +36,7 @@ public class ManufacturerController {
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer Id:" + manufacturerId));
 
-        if (manufacturer.getDogs().isEmpty()) {
+        if (manufacturer.getProducts().isEmpty()) {
             manufacturerRepository.delete(manufacturer);
         } else {
             // System output for the error message:
