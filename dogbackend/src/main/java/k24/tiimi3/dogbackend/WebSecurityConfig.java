@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-// import org.springframework.web.cors.*;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -47,19 +46,4 @@ public class WebSecurityConfig {
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
                 auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
         }
-
-        // CORS Configuration
-        // Frontend rekisteröitymistä varten, ei toimi :'(
-
-        // @Bean
-        // public CorsConfigurationSource corsConfigurationSource() {
-        // CorsConfiguration configuration = new CorsConfiguration();
-        // configuration.addAllowedOrigin("*"); // Allow requests from any origin
-        // configuration.addAllowedMethod("*"); // Allow all HTTP methods
-        // configuration.addAllowedHeader("*"); // Allow all headers
-        // UrlBasedCorsConfigurationSource source = new
-        // UrlBasedCorsConfigurationSource();
-        // source.registerCorsConfiguration("/**", configuration);
-        // return source;
-        // }
 }
