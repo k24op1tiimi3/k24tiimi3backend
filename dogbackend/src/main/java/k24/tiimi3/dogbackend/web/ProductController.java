@@ -106,7 +106,7 @@ public class ProductController {
 
     @GetMapping("/search")
     public String search(@RequestParam("term") String searchTerm, Model model) {
-        List<Product> products = productRepo.findByManufacturerNameLike(searchTerm);
+        List<Product> products = productRepo.findByManufacturerNameContainingIgnoreCase(searchTerm);
         model.addAttribute("products", products);
         return "productlist";
     }

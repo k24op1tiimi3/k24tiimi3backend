@@ -8,6 +8,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     List<Product> findByType(Type type);
 
-    List<Product> findByManufacturerNameLike(String name);
+    List<Product> findByManufacturerNameContainingIgnoreCase(String name);
 
 }
