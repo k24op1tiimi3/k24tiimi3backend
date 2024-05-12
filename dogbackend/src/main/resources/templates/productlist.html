@@ -27,6 +27,7 @@
                 <input type="text" name="term" placeholder="Search manufacturers">
                 <button type="submit">Search</button>
             </form>
+            <a class="btn btn-third" th:href="@{/productlist}">Clear searches</a>
         <tr th:each="product : ${products}">
             <td th:text="${product.title}">Product title</td>
             <td th:text="${product.type.name}">Type</td>
