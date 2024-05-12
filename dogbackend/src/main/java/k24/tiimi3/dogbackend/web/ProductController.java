@@ -6,14 +6,12 @@ import k24.tiimi3.dogbackend.domain.SizeRepository;
 import k24.tiimi3.dogbackend.domain.TypeRepository;
 import k24.tiimi3.dogbackend.domain.ManufacturerRepository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -67,7 +65,7 @@ public class ProductController {
             if (product.getId() == null) {
                 return "addproduct";
             } else {
-                return "editproduct";   
+                return "editproduct";
             }
         } else {
             product.setPrice(Double.parseDouble(price.replace(",", ".")));
@@ -106,4 +104,10 @@ public class ProductController {
         return "editproduct";
     }
 
+    @GetMapping("/search")
+    public String search(@RequestParam("term") String searchTerm, Model model) {
+        List<Product> products = productRepo.findByManufacturerNameLike(searchTerm);
+        model.addAttribute("products", products);
+        return "productlist";
+    }
 }
